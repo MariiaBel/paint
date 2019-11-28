@@ -144,7 +144,7 @@ namespace Paint1
             Brush.DrawLine(startX, startY, endX, endY);
         }
 
-        public void DrawTriangle(int startX, int startY, int endX, int endY)
+        public void DrawFigureTriangle(int startX, int startY, int endX, int endY)
         {
             if (endX > startX)
             {

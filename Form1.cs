@@ -41,12 +41,18 @@ namespace Paint1
                 {
                     if (flagTool == "brush") DrawBrush(e);
                     else if (flagTool == "square") DrawFigureSquare(e);
+                    else if (flagTool == "circle") DrawFigureCircle(e);
                 }
                 else
                 {
                     if (flagTool == "pointPolygon" && prevPointX != -1 && prevPointY != -1) DrawFigureByPoint(e);
                 }
             }
+        }
+
+        private void DrawFigureCircle(MouseEventArgs e)
+        {
+            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
         }
 
         private void DrawBrush(MouseEventArgs e)
@@ -78,6 +84,7 @@ namespace Paint1
 
             if(flagTool == "square") figure.DrawFigureSquare(x1, y1, x2, y2);
             else if(flagTool == "pointPolygon") figure.DrawFigureByPoint(x1, y1, x2, y2);
+            else if (flagTool == "circle") figure.DrawFigureCircle(x1, y1, x2, y2);
 
             canvas.Image = memoryBitmap;
         }
@@ -136,6 +143,11 @@ namespace Paint1
                 prevPointX = -1;
                 prevPointY = -1;
             }
+        }
+
+        private void btnCicle_Click(object sender, EventArgs e)
+        {
+            this.flagTool = "circle";
         }
 
         private void trackBrush_ValueChanged(object sender, EventArgs e)

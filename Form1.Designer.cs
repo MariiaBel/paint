@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
+            this.pointPolygon = new System.Windows.Forms.Button();
             this.brushTool = new System.Windows.Forms.Button();
             this.figureSquare = new System.Windows.Forms.Button();
             this.trackBrush = new System.Windows.Forms.TrackBar();
@@ -36,7 +37,7 @@
             this.cleanBt = new System.Windows.Forms.Button();
             this.canvas = new System.Windows.Forms.PictureBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.pointPolygon = new System.Windows.Forms.Button();
+            this.btnCicle = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBrush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
@@ -44,6 +45,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.btnCicle);
             this.panel.Controls.Add(this.pointPolygon);
             this.panel.Controls.Add(this.brushTool);
             this.panel.Controls.Add(this.figureSquare);
@@ -56,6 +58,16 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(197, 450);
             this.panel.TabIndex = 0;
+            // 
+            // pointPolygon
+            // 
+            this.pointPolygon.Location = new System.Drawing.Point(3, 152);
+            this.pointPolygon.Name = "pointPolygon";
+            this.pointPolygon.Size = new System.Drawing.Size(194, 35);
+            this.pointPolygon.TabIndex = 5;
+            this.pointPolygon.Text = "point polygon";
+            this.pointPolygon.UseVisualStyleBackColor = true;
+            this.pointPolygon.Click += new System.EventHandler(this.pointPolygon_Click);
             // 
             // brushTool
             // 
@@ -121,15 +133,15 @@
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
-            // pointPolygon
+            // btnCicle
             // 
-            this.pointPolygon.Location = new System.Drawing.Point(3, 152);
-            this.pointPolygon.Name = "pointPolygon";
-            this.pointPolygon.Size = new System.Drawing.Size(194, 35);
-            this.pointPolygon.TabIndex = 5;
-            this.pointPolygon.Text = "point polygon";
-            this.pointPolygon.UseVisualStyleBackColor = true;
-            this.pointPolygon.Click += new System.EventHandler(this.pointPolygon_Click);
+            this.btnCicle.Location = new System.Drawing.Point(3, 193);
+            this.btnCicle.Name = "btnCicle";
+            this.btnCicle.Size = new System.Drawing.Size(194, 35);
+            this.btnCicle.TabIndex = 6;
+            this.btnCicle.Text = "circle";
+            this.btnCicle.UseVisualStyleBackColor = true;
+            this.btnCicle.Click += new System.EventHandler(this.btnCicle_Click);
             // 
             // Form1
             // 
@@ -159,6 +171,7 @@
         private System.Windows.Forms.Button figureSquare;
         private System.Windows.Forms.Button brushTool;
         private System.Windows.Forms.Button pointPolygon;
+        private System.Windows.Forms.Button btnCicle;
     }
 }
 

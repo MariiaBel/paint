@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Paint1
@@ -18,7 +12,7 @@ namespace Paint1
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         Brush brush;
         Figure figure;
-
+        CustomColorDialog colorDialog = new CustomColorDialog();
 
         public Form1()
         {
@@ -103,7 +97,6 @@ namespace Paint1
 
             this.brush.BitmapImage = btm;
             this.figure.Brush = brush;
-
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -132,8 +125,9 @@ namespace Paint1
         }
 
         private void colorBt_Click(object sender, EventArgs e)
-        {
-            if (colorDialog.ShowDialog() == DialogResult.OK)
+        {           
+            DialogResult dr = colorDialog.ShowDialog();
+            if (dr == DialogResult.OK)
             {
                 colorBt.BackColor = colorDialog.Color;
                 brush.BrushColor = colorDialog.Color;
@@ -156,19 +150,14 @@ namespace Paint1
         {
             shift = false;
         }
-
-        
-
+  
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Shift)
             {
-
                 shift = true;
             }
         }
-
-       
 
         private void trackBrush_ValueChanged(object sender, EventArgs e)
         {
@@ -224,8 +213,6 @@ namespace Paint1
             brush.BitmapImage = bitmapImage;
             brush.BrushColor = lastColorBrush;
             brush.BrushThickness = lastThicknessBrush;
-        }
-
-        
+        }    
     }
 }

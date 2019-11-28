@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brush.cs" />
+    <Compile Include="CustomColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomColorDialog.Designer.cs" >
+       <DependentUpon>CustomColorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Figure.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -56,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomColorDialog.resx" >
+      <DependentUpon>CustomColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

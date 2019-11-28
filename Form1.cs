@@ -42,6 +42,7 @@ namespace Paint1
                     if (flagTool == "brush") DrawBrush(e);
                     else if (flagTool == "square") DrawFigureSquare(e);
                     else if (flagTool == "circle") DrawFigureCircle(e);
+                    else if (flagTool == "triangle") DrawFigureCircle(e);
                 }
                 else
                 {
@@ -78,6 +79,10 @@ namespace Paint1
             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
         }
 
+        private void DrawFigureTriangle(MouseEventArgs e)
+        {
+            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+        }
 
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
@@ -87,6 +92,7 @@ namespace Paint1
             if (flagTool == "square") figure.DrawFigureSquare(x1, y1, x2, y2, shift);
             else if (flagTool == "pointPolygon") figure.DrawFigureByPoint(x1, y1, x2, y2);
             else if (flagTool == "circle") figure.DrawFigureCircle(x1, y1, x2, y2, shift);
+            else if (flagTool == "triangle") figure.DrawFigureTriangle(x1, y1, x2, y2);
             canvas.Image = memoryBitmap;
         }
 

@@ -13,8 +13,8 @@ namespace Paint1
     public partial class Form1 : Form
     {
         Bitmap bitmapImage, memoryBitmap;
-        bool flag = false;
-        string flagTool = "brush";
+        bool flag = false, shift = false;
+        string flagTool = "brush", prevFlagTool;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         Brush brush;
         Figure figure;
@@ -41,11 +41,12 @@ namespace Paint1
                 {
                     if (flagTool == "brush") DrawBrush(e);
                     else if (flagTool == "square") DrawFigureSquare(e);
+                    else if (flagTool == "circle") DrawFigureCircle(e);
                 }
                 else
                 {
                     if (flagTool == "pointPolygon" && prevPointX != -1 && prevPointY != -1) DrawFigureByPoint(e);
-                }
+                } 
             }
         }
 
@@ -72,13 +73,20 @@ namespace Paint1
 
         }
 
+        private void DrawFigureCircle(MouseEventArgs e)
+        {
+            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+        }
+
+
+        //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {
             CloneBitmap(out memoryBitmap);
 
-            if(flagTool == "square") figure.DrawFigureSquare(x1, y1, x2, y2);
-            else if(flagTool == "pointPolygon") figure.DrawFigureByPoint(x1, y1, x2, y2);
-
+            if (flagTool == "square") figure.DrawFigureSquare(x1, y1, x2, y2, shift);
+            else if (flagTool == "pointPolygon") figure.DrawFigureByPoint(x1, y1, x2, y2);
+            else if (flagTool == "circle") figure.DrawFigureCircle(x1, y1, x2, y2, shift);
             canvas.Image = memoryBitmap;
         }
 
@@ -137,6 +145,24 @@ namespace Paint1
                 prevPointY = -1;
             }
         }
+       
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            shift = false;
+        }
+
+        
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+
+                shift = true;
+            }
+        }
+
+       
 
         private void trackBrush_ValueChanged(object sender, EventArgs e)
         {
@@ -146,6 +172,25 @@ namespace Paint1
         private void trackBrush_Scroll(object sender, EventArgs e)
         {
 
+        }
+
+        private void figureSquare_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void figurePolygon_Click(object sender, EventArgs e)
+        {
+            this.flagTool = "polygon";  
+        }
+
+        private void figureTriangle_Click(object sender, EventArgs e)
+        {
+            this.flagTool = "triangle";
+        }
+        private void figureCircle_Click(object sender, EventArgs e)
+        {
+            this.flagTool = "circle";    
         }
 
         private void figureSquare_Click(object sender, EventArgs e)
@@ -160,7 +205,7 @@ namespace Paint1
 
         private void brushTool_Click(object sender, EventArgs e)
         {
-            this.flagTool = "brush";
+            this.flagTool = "brush"; 
         }
 
         private void cleanBt_Click(object sender, EventArgs e)
@@ -174,5 +219,7 @@ namespace Paint1
             brush.BrushColor = lastColorBrush;
             brush.BrushThickness = lastThicknessBrush;
         }
+
+        
     }
 }

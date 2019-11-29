@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace Paint1
 {
@@ -54,24 +47,16 @@ namespace Paint1
 
                     int ax = -radius + startX;
                     int ay = startY;
+                    int ay1 = startY;
                     for (int x = -radius; x <= radius; x++)
                     {
                         int yOTx = Convert.ToInt32(Math.Sqrt(Math.Abs(Math.Pow(radius, 2) - Math.Pow(x, 2))));
                         Brush.DrawLine(ax, ay, x + startX, yOTx + startY);
+                        Brush.DrawLine(ax, ay1, x + startX, -yOTx + startY);
                         ax = x + startX;
                         ay = yOTx + startY;
+                        ay1 = -yOTx + startY;
                     }
-
-                    ax = -radius + startX;
-                    ay = startY;
-                    for (int x = -radius; x <= radius; x++)
-                    {
-                        int yOTx = Convert.ToInt32(Math.Sqrt(Math.Abs(Math.Pow(radius, 2) - Math.Pow(x, 2))));
-                        Brush.DrawLine(ax, ay, x + startX, -yOTx + startY);
-                        ax = x + startX;
-                        ay = -yOTx + startY;
-                    }
-
                 }
                 else
                 {

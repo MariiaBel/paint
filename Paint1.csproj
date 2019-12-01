@@ -56,7 +56,6 @@
     <Compile Include="CustomColorDialog.Designer.cs">
       <DependentUpon>CustomColorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Figure.cs" />
     <Compile Include="IFigure.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

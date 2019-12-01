@@ -12,7 +12,7 @@ namespace Paint1
 {
     public partial class CustomColorDialog : Form
     {
-        public Color Color = Color.Red;
+        public Color Color = Color.Black;
         public CustomColorDialog()
         {
             InitializeComponent();
@@ -26,11 +26,6 @@ namespace Paint1
         private void button3_Click(object sender, EventArgs e)
         {
             Color = Color.Green;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Color = Color.Red;
         }
 
         private void btnPurple_Click(object sender, EventArgs e)

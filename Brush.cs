@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
-
+using System.Windows.Forms;
 namespace Paint1
 {
     public class Brush
     {
-        public static Color BrushColor { set; get; } = Color.Red;
+        public static Color BrushColor { set; get; } = Color.Black;
         public static int BrushThickness { set; get; } = 1;
         
         public static  Bitmap BitmapImage
@@ -13,10 +13,18 @@ namespace Paint1
             set;
             get;
         }
-
-        public  Brush(ref Bitmap btm)
+       
+        public Brush(ref Bitmap btm)
         {
-            BitmapImage = btm;
+            if (btm == null)
+            {
+                //BitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            }
+            else
+            {
+                BitmapImage = btm;
+            }
+        
         }
 
         public static void DrawLine(int startX, int startY, int endX, int endY)

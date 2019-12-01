@@ -164,7 +164,7 @@
             // 
             // colorBt
             // 
-            this.colorBt.BackColor = System.Drawing.Color.Red;
+            this.colorBt.BackColor = System.Drawing.Color.Black;
             this.colorBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.colorBt.FlatAppearance.BorderSize = 0;
             this.colorBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -218,7 +218,7 @@
             // 
             // canvas
             // 
-            this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.ErrorImage = null;
             this.canvas.Location = new System.Drawing.Point(0, 73);
@@ -226,6 +226,7 @@
             this.canvas.Size = new System.Drawing.Size(1488, 825);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
+            this.canvas.SizeChanged += new System.EventHandler(this.canvas_SizeChanged);
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);

@@ -57,7 +57,7 @@
             this.panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(800, 73);
+            this.panel.Size = new System.Drawing.Size(1488, 73);
             this.panel.TabIndex = 0;
             // 
             // panel2
@@ -164,7 +164,7 @@
             // 
             // colorBt
             // 
-            this.colorBt.BackColor = System.Drawing.Color.Black;
+            this.colorBt.BackColor = System.Drawing.Color.Red;
             this.colorBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.colorBt.FlatAppearance.BorderSize = 0;
             this.colorBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -218,11 +218,12 @@
             // 
             // canvas
             // 
-            this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas.ErrorImage = null;
             this.canvas.Location = new System.Drawing.Point(0, 73);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(800, 377);
+            this.canvas.Size = new System.Drawing.Size(1488, 825);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
@@ -234,12 +235,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1488, 898);
             this.Controls.Add(this.canvas);
             this.Controls.Add(this.panel);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.AutoSizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);

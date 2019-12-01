@@ -12,7 +12,7 @@ namespace Paint1
 {
     public partial class CustomColorDialog : Form
     {
-        public Color Color = Color.Black;
+        public Color Color = Color.Red;
         public CustomColorDialog()
         {
             InitializeComponent();

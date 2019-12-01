@@ -6,12 +6,12 @@ namespace Paint1
 {
     public partial class Form1 : Form
     {
+        IFigure figure123 = new Line();
+
         Bitmap bitmapImage, memoryBitmap;
-        bool flag = false, shift = false;
-        string flagTool = "brush", prevFlagTool;
+        bool mouseDown = false, shift = false;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
-        Brush brush;
-        Figure figure;
+        
         CustomColorDialog colorDialog = new CustomColorDialog();
 
         public Form1()
@@ -22,8 +22,6 @@ namespace Paint1
         private void Form1_Load(object sender, EventArgs e)
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
-            brush = new Brush(ref bitmapImage);
-            figure = new Figure(brush);
             canvas.Image = bitmapImage;
         }
 
@@ -31,83 +29,80 @@ namespace Paint1
         {
             if (e.Location.X >= 0 && e.Location.X < canvas.Width && e.Location.Y >= 0 && e.Location.Y < canvas.Height)
             {
-                if(flag)
+                if(mouseDown)
                 {
-                    if (flagTool == "brush") DrawBrush(e);
-                    else if (flagTool == "square") DrawFigureSquare(e);
-                    else if (flagTool == "circle") DrawFigureCircle(e);
-                    else if (flagTool == "triangle") DrawFigureCircle(e);
+                    if (figure123 is Line)
+                    {
+                        DrawBrush(e);
+                    }
+                    else
+                    {
+                        DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+                    }                    
                 }
                 else
                 {
-                    if (flagTool == "pointPolygon" && prevPointX != -1 && prevPointY != -1) DrawFigureByPoint(e);
+                    if (figure123 is Polygon && prevPointX != -1 && prevPointY != -1) DrawFigureByPoint(e);
                 } 
             }
         }
 
         private void DrawBrush(MouseEventArgs e)
         {
-            brush.DrawLine(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+            figure123.Draw(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
 
             canvas.Image = bitmapImage;
+
         }
 
-        private void DrawFigureSquare(MouseEventArgs e)
-        {
-            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
-        }
-        
         private void DrawFigureByPoint(MouseEventArgs e)
         {
             DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
 
             prevPointX = firstPointX;
             prevPointY = firstPointY;
-
         }
 
-        private void DrawFigureCircle(MouseEventArgs e)
-        {
-            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
-        }
-
-        private void DrawFigureTriangle(MouseEventArgs e)
-        {
-            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
-        }
 
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {
             CloneBitmap(out memoryBitmap);
 
-            if (flagTool == "square") figure.DrawFigureSquare(x1, y1, x2, y2, shift);
-            else if (flagTool == "pointPolygon") figure.DrawFigureByPoint(x1, y1, x2, y2);
-            else if (flagTool == "circle") figure.DrawFigureCircle(x1, y1, x2, y2, shift);
-            else if (flagTool == "triangle") figure.DrawFigureTriangle(x1, y1, x2, y2);
+            if (figure123 is Square)
+            {
+                ((Square)figure123).IsRectrangle = !shift;
+            } 
+           
+            if (figure123 is Circle)
+            {
+                ((Circle)figure123).IsEllipse = !shift;
+            }
+
+            figure123.Draw(x1, y1, x2, y2);
+
             canvas.Image = memoryBitmap;
         }
 
         private void CloneBitmap(out Bitmap btm)
         {
-            Rectangle r = new Rectangle(0, 0, canvas.Width - 1, canvas.Height - 1);
+            Rectangle r = new Rectangle(0, 0, canvas.Width-1 , canvas.Height-1 );
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-
-            this.brush.BitmapImage = btm;
-            this.figure.Brush = brush;
+            Brush.BitmapImage = btm;
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            flag = true;
+            mouseDown = true;
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
-            if (flagTool == "pointPolygon" && prevPointX == -1 && prevPointY == -1)
+
+            if (figure123 is Polygon && prevPointX == -1 && prevPointY == -1)
             {
                 CloneBitmap(out memoryBitmap);
-
                 prevPointX = firstPointX;
                 prevPointY = firstPointY;
                 memoryFirstPointX = firstPointX;
@@ -117,11 +112,13 @@ namespace Paint1
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            flag = false;
-            if (flagTool != "brush") bitmapImage = memoryBitmap;
+            mouseDown = false;
+            if (memoryBitmap != null)
+            {
+                bitmapImage = memoryBitmap;
+            }
 
-            brush.BitmapImage = bitmapImage;
-            brush.BrushColor = colorDialog.Color;
+            Brush.BrushColor = colorDialog.Color;
         }
 
         private void colorBt_Click(object sender, EventArgs e)
@@ -130,15 +127,15 @@ namespace Paint1
             if (dr == DialogResult.OK)
             {
                 colorBt.BackColor = colorDialog.Color;
-                brush.BrushColor = colorDialog.Color;
+                Brush.BrushColor = colorDialog.Color;
             }
         }
 
         private void canvas_DoubleClick(object sender, EventArgs e)
         {
-            if (flagTool == "pointPolygon")
+            if (figure123  is Polygon)
             {
-                figure.DrawFigureByPoint(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY);
+                figure123.Draw(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY);
                 bitmapImage = memoryBitmap;
                 canvas.Image = bitmapImage;
                 prevPointX = -1;
@@ -161,12 +158,31 @@ namespace Paint1
 
         private void trackBrush_ValueChanged(object sender, EventArgs e)
         {
-            brush.BrushThickness = trackBrush.Value + 1;
+            Brush.BrushThickness = trackBrush.Value + 1;
         }
 
         private void trackBrush_Scroll(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e )
+        {
+            //   //Color lastColorBrush = brush.BrushColor;
+            //   // int lastThicknessBrush = brush.BrushThickness;
+            //   // Rectangle r = new Rectangle(0, 0, canvas.Width - 1, canvas.Height - 1);
+            //   // btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
+            //   // bitmapImage = btm(canvas.Width, canvas.Height);
+            //   // canvas.Image = bitmapImage; 
+            //   // this.brush.BitmapImage = btm;
+            //   // this.figure.Brush = brush;
+            //   //  brush.BrushColor = lastColorBrush;
+            //   // brush.BrushThickness = lastThicknessBrush;
+            ////canvas.Image = bitmapImage;
+            ////brush.BitmapImage = bitmapImage;
+            //CloneBitmap(out memoryBitmap);
+
+            //bitmapImage = new Bitmap(canvas.Width, canvas.Height);
         }
 
         private void figureSquare_BackColorChanged(object sender, EventArgs e)
@@ -176,43 +192,43 @@ namespace Paint1
 
         private void figurePolygon_Click(object sender, EventArgs e)
         {
-            this.flagTool = "polygon";  
+            figure123 = new Polygon();
         }
 
         private void figureTriangle_Click(object sender, EventArgs e)
         {
-            this.flagTool = "triangle";
+            figure123= new Triangle();
         }
         private void figureCircle_Click(object sender, EventArgs e)
         {
-            this.flagTool = "circle";    
+            figure123 = new Circle();
         }
 
         private void figureSquare_Click(object sender, EventArgs e)
         {
-            this.flagTool = "square";
+            figure123 = new Square();
         }
 
         private void pointPolygon_Click(object sender, EventArgs e)
         {
-            this.flagTool = "pointPolygon";
+            figure123 = new Polygon();
         }
 
         private void brushTool_Click(object sender, EventArgs e)
         {
-            this.flagTool = "brush"; 
+            figure123 = new Line();
         }
 
         private void cleanBt_Click(object sender, EventArgs e)
         {
-            Color lastColorBrush = brush.BrushColor;
-            int lastThicknessBrush = brush.BrushThickness;
+            Color lastColorBrush = Brush.BrushColor;
+            int lastThicknessBrush = Brush.BrushThickness;
 
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             canvas.Image = bitmapImage;
-            brush.BitmapImage = bitmapImage;
-            brush.BrushColor = lastColorBrush;
-            brush.BrushThickness = lastThicknessBrush;
+            Brush.BitmapImage = bitmapImage;
+            Brush.BrushColor = lastColorBrush;
+            Brush.BrushThickness = lastThicknessBrush;
         }    
     }
 }

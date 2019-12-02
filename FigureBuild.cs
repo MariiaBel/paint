@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Paint1
 {
-    public interface IFigure
+    public interface IFigureBuild 
     {
-        void Draw(int startX, int startY, int endX, int endY, bool shift);
+        void BuildFigure(int startX, int startY, int endX, int endY, bool shift);
     }
 }

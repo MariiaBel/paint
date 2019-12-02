@@ -34,11 +34,14 @@
             this.btnDarkCyan = new System.Windows.Forms.Button();
             this.btnPurple = new System.Windows.Forms.Button();
             this.btnRoyalBlue = new System.Windows.Forms.Button();
+            this.btnBlack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRed
             // 
             this.btnRed.BackColor = System.Drawing.Color.Red;
+            this.btnRed.FlatAppearance.BorderSize = 0;
+            this.btnRed.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRed.Location = new System.Drawing.Point(12, 12);
             this.btnRed.Name = "btnRed";
             this.btnRed.Size = new System.Drawing.Size(40, 40);
@@ -50,7 +53,7 @@
             // 
             this.btnOK.BackColor = System.Drawing.Color.LavenderBlush;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(12, 67);
+            this.btnOK.Location = new System.Drawing.Point(43, 67);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(85, 33);
             this.btnOK.TabIndex = 1;
@@ -61,17 +64,18 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.LavenderBlush;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(114, 67);
+            this.btnCancel.Location = new System.Drawing.Point(134, 67);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 33);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
-           
             // 
             // btnDarkCyan
             // 
             this.btnDarkCyan.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnDarkCyan.FlatAppearance.BorderSize = 0;
+            this.btnDarkCyan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDarkCyan.Location = new System.Drawing.Point(57, 12);
             this.btnDarkCyan.Name = "btnDarkCyan";
             this.btnDarkCyan.Size = new System.Drawing.Size(40, 40);
@@ -82,6 +86,7 @@
             // btnPurple
             // 
             this.btnPurple.BackColor = System.Drawing.Color.Purple;
+            this.btnPurple.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPurple.Location = new System.Drawing.Point(103, 12);
             this.btnPurple.Name = "btnPurple";
             this.btnPurple.Size = new System.Drawing.Size(40, 40);
@@ -92,6 +97,7 @@
             // btnRoyalBlue
             // 
             this.btnRoyalBlue.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnRoyalBlue.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRoyalBlue.Location = new System.Drawing.Point(149, 12);
             this.btnRoyalBlue.Name = "btnRoyalBlue";
             this.btnRoyalBlue.Size = new System.Drawing.Size(40, 40);
@@ -99,12 +105,24 @@
             this.btnRoyalBlue.UseVisualStyleBackColor = false;
             this.btnRoyalBlue.Click += new System.EventHandler(this.btnRoyalBlue_Click);
             // 
+            // btnBlack
+            // 
+            this.btnBlack.BackColor = System.Drawing.Color.Black;
+            this.btnBlack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBlack.Location = new System.Drawing.Point(195, 12);
+            this.btnBlack.Name = "btnBlack";
+            this.btnBlack.Size = new System.Drawing.Size(40, 40);
+            this.btnBlack.TabIndex = 6;
+            this.btnBlack.UseVisualStyleBackColor = false;
+            this.btnBlack.Click += new System.EventHandler(this.btnBlack_Click);
+            // 
             // CustomColorDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(212, 117);
+            this.ClientSize = new System.Drawing.Size(245, 115);
+            this.Controls.Add(this.btnBlack);
             this.Controls.Add(this.btnRoyalBlue);
             this.Controls.Add(this.btnPurple);
             this.Controls.Add(this.btnDarkCyan);
@@ -125,5 +143,6 @@
         private System.Windows.Forms.Button btnDarkCyan;
         private System.Windows.Forms.Button btnPurple;
         private System.Windows.Forms.Button btnRoyalBlue;
+        private System.Windows.Forms.Button btnBlack;
     }
 }

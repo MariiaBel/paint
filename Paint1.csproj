@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brush.cs" />
+    <Compile Include="BuildFigure.cs" />
     <Compile Include="FigureByPoint.cs" />
+    <Compile Include="FigureBuild.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="CustomColorDialog.cs">

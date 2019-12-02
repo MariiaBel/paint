@@ -37,5 +37,10 @@ namespace Paint1
         {
             Color = Color.RoyalBlue;
         }
+
+        private void btnBlack_Click(object sender, EventArgs e)
+        {
+            Color = Color.Black;
+        }
     }
 }

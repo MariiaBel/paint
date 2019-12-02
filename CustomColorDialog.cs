@@ -28,11 +28,6 @@ namespace Paint1
             Color = Color.Green;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Color = Color.Red;
-        }
-
         private void btnPurple_Click(object sender, EventArgs e)
         {
             Color = Color.Purple;
@@ -41,6 +36,11 @@ namespace Paint1
         private void btnRoyalBlue_Click(object sender, EventArgs e)
         {
             Color = Color.RoyalBlue;
+        }
+
+        private void btnBlack_Click(object sender, EventArgs e)
+        {
+            Color = Color.Black;
         }
     }
 }

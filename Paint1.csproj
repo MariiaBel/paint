@@ -47,22 +47,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brush.cs" />
+    <Compile Include="BuildFigure.cs" />
+    <Compile Include="FigureByPoint.cs" />
+    <Compile Include="FigureBuild.cs" />
+    <Compile Include="Polygon.cs" />
+    <Compile Include="Triangle.cs" />
     <Compile Include="CustomColorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomColorDialog.Designer.cs" >
-       <DependentUpon>CustomColorDialog.cs</DependentUpon>
+    <Compile Include="CustomColorDialog.Designer.cs">
+      <DependentUpon>CustomColorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Figure.cs" />
+    <Compile Include="IFigure.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomColorDialog.resx" >
+    <Compile Include="Circle.cs" />
+    <Compile Include="Square.cs" />
+    <EmbeddedResource Include="CustomColorDialog.resx">
       <DependentUpon>CustomColorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">

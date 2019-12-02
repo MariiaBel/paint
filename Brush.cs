@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Drawing;
-
+using System.Windows.Forms;
 namespace Paint1
 {
     public class Brush
     {
-        public Color BrushColor { set; get; } = Color.Black;
-        public int BrushThickness { set; get; } = 1;
+        public static Color BrushColor { set; get; } = Color.Black;
+        public static int BrushThickness { set; get; } = 1;
         
-        public Bitmap BitmapImage
+        public static  Bitmap BitmapImage
         {
             set;
             get;
         }
-
+       
         public Brush(ref Bitmap btm)
         {
-            this.BitmapImage = btm;
+            if (btm == null)
+            {
+                //BitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            }
+            else
+            {
+                BitmapImage = btm;
+            }
+        
         }
 
-        public void DrawLine(int startX, int startY, int endX, int endY)
+        public static void DrawLine(int startX, int startY, int endX, int endY)
         {
             double w = endX - startX,
                 h = endY - startY,
@@ -37,11 +45,11 @@ namespace Paint1
             }
         }
 
-        private void SetPixelByLength(int length, int startX, int startY, double speed, bool sideX = true)
+        private static void SetPixelByLength(int length, int startX, int startY, double speed, bool sideX = true)
         {
             int istart = 0;
             int iend = length;
-            int step = (this.BrushThickness == 1) ? 1 : this.BrushThickness / 2;
+            int step = (BrushThickness == 1) ? 1 : BrushThickness / 2;
             if (length < 0)
             {
                 istart = length;
@@ -62,42 +70,47 @@ namespace Paint1
             }
         }
 
-        private void MakePoint(int startX, int startY, int x, int y)
+        private static void MakePoint(int startX, int startY, int x, int y)
         {
-            int thinkness = this.BrushThickness - 1;
+            if (startX < 0 || startY < 0)
+            {
+                return;
+            }
+
+            int thinkness = BrushThickness - 1;
             int starPointX = startX - thinkness;
             int starPointY = startY - thinkness;
             int endPointX = startX + thinkness;
             int endPointY= startY + thinkness;
-            int leftedPoint = this.BrushThickness / 2;
+            int leftedPoint = BrushThickness / 2;
             try
             {
                 for (int i = starPointX; i <= endPointX; i++)
                 {
                     for (int j = starPointY + leftedPoint; j <= endPointY - leftedPoint; j++)
                     {
-                        BitmapImage.SetPixel(i + x, j + y, this.BrushColor);
+                        BitmapImage.SetPixel(i + x, j + y, BrushColor);
                     }
 
-                    if (i < starPointX + this.BrushThickness / 2) leftedPoint--;
-                    if (i > endPointX - this.BrushThickness / 2) leftedPoint++;
+                    if (i < starPointX + BrushThickness / 2) leftedPoint--;
+                    if (i > endPointX - BrushThickness / 2) leftedPoint++;
                 }
             }
             catch {}
         }
 
-        private void MakePointMyFirstResult(int startX, int startY, int x, int y)
+        private static void MakePointMyFirstResult(int startX, int startY, int x, int y)
         {
             try
             {
-                BitmapImage.SetPixel(startX + x, startY + y, this.BrushColor);
-                for (int w = 1; w < this.BrushThickness; w++)
+                BitmapImage.SetPixel(startX + x, startY + y, BrushColor);
+                for (int w = 1; w < BrushThickness; w++)
                 {
-                    BitmapImage.SetPixel(startX + x + w, startY + y + w, this.BrushColor);
+                    BitmapImage.SetPixel(startX + x + w, startY + y + w, BrushColor);
                     for (int t = 0; t < w; t++)
                     {
-                        BitmapImage.SetPixel(startX + x + w, startY + y + t, this.BrushColor);
-                        BitmapImage.SetPixel(startX + x + t, startY + y + w, this.BrushColor);
+                        BitmapImage.SetPixel(startX + x + w, startY + y + t, BrushColor);
+                        BitmapImage.SetPixel(startX + x + t, startY + y + w, BrushColor);
                     }
                 }
             }

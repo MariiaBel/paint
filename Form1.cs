@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace Paint1
 {
     public partial class Form1 : Form
     {
+        IFill typeFill = new FillSolid();
 
         IFigureBuild figure = new Build(new Line());
         string flagFigure = "line";
@@ -14,6 +16,10 @@ namespace Paint1
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         
         CustomColorDialog colorDialog = new CustomColorDialog();
+
+
+
+        Button button = null;
 
         public Form1()
         {
@@ -24,6 +30,7 @@ namespace Paint1
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             canvas.Image = bitmapImage;
+
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -48,6 +55,7 @@ namespace Paint1
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
                             break;
+                        
                     }
            
                 }
@@ -93,7 +101,6 @@ namespace Paint1
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             Brush.BitmapImage = btm;
 
-            //figure.Brush = brush;
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -101,7 +108,13 @@ namespace Paint1
             mouseDown = true;
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
+            if (flagFigure == "fillSolid")
+            {
+                typeFill.Fill(e.X, e.Y, Brush.BrushColor, bitmapImage);
 
+            }
+          
+          
             if (flagFigure == "ppolygon" && prevPointX == -1 && prevPointY == -1)
             {
                 CloneBitmap(out memoryBitmap);
@@ -191,25 +204,33 @@ namespace Paint1
         {
             figure = new Build(new Polygon());
             flagFigure = "fpolygon";
+            ButtonChange(figurePolygon);
+        }
+
+        private void fill_Click(object sender, EventArgs e)
+        {
+            flagFigure = "fillSolid";
+            typeFill = new FillSolid();
         }
 
         private void figureTriangle_Click(object sender, EventArgs e)
         {
             figure = new Build(new Triangle());
             flagFigure = "triangle";
-
+            ButtonChange(figureTriangle);
         }
         private void figureCircle_Click(object sender, EventArgs e)
         {
             figure = new Build(new Circle());
             flagFigure = "circle";
-
+            ButtonChange(figureCircle);
         }
 
         private void figureSquare_Click(object sender, EventArgs e)
         {
             figure = new Build(new Square());
             flagFigure = "square";
+            ButtonChange(figureSquare);
 
         }
 
@@ -217,13 +238,14 @@ namespace Paint1
         {
             figure = new Build(new Polygon());
             flagFigure = "ppolygon";
+            ButtonChange(pointPolygon);
         }
 
         private void brushTool_Click(object sender, EventArgs e)
         {
             figure = new Build(new Line());
             flagFigure = "brush";
-
+            ButtonChange(brushTool);
         }
 
         private void cleanBt_Click(object sender, EventArgs e)
@@ -237,5 +259,26 @@ namespace Paint1
             Brush.BrushColor = lastColorBrush;
             Brush.BrushThickness = lastThicknessBrush;
         }    
+
+        private void ButtonChange(Button master)
+        {
+            if (button == null)
+            {
+                master.BackColor = Color.Silver;
+               
+            }
+            else
+            {
+                button.BackColor = Color.White;
+             
+                master.BackColor = Color.Silver;
+                
+
+            }
+
+            button = master;
+
+        }
+
     }
 }

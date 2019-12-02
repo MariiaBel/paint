@@ -42,6 +42,7 @@
             this.cleanBt = new System.Windows.Forms.Button();
             this.brushTool = new System.Windows.Forms.Button();
             this.canvas = new System.Windows.Forms.PictureBox();
+            this.fill = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -153,6 +154,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.fill);
             this.panel1.Controls.Add(this.colorBt);
             this.panel1.Controls.Add(this.trackBrush);
             this.panel1.Controls.Add(this.cleanBt);
@@ -203,7 +205,7 @@
             // 
             // brushTool
             // 
-            this.brushTool.BackColor = System.Drawing.Color.Transparent;
+            this.brushTool.BackColor = System.Drawing.Color.White;
             this.brushTool.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("brushTool.BackgroundImage")));
             this.brushTool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.brushTool.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -231,6 +233,21 @@
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
+            // 
+            // fill
+            // 
+            this.fill.BackColor = System.Drawing.Color.White;
+            this.fill.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fill.BackgroundImage")));
+            this.fill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.fill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.fill.FlatAppearance.BorderSize = 0;
+            this.fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fill.Location = new System.Drawing.Point(3, 26);
+            this.fill.Name = "fill";
+            this.fill.Size = new System.Drawing.Size(17, 17);
+            this.fill.TabIndex = 5;
+            this.fill.UseVisualStyleBackColor = false;
+            this.fill.Click += new System.EventHandler(this.fill_Click);
             // 
             // Form1
             // 
@@ -271,6 +288,7 @@
         public System.Windows.Forms.TrackBar trackBrush;
         private System.Windows.Forms.Button figurePolygon;
         private System.Windows.Forms.Button figureTriangle;
+        private System.Windows.Forms.Button fill;
     }
 }
 

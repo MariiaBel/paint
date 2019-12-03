@@ -11,7 +11,7 @@ namespace Paint1
        
 
         private IFigure line = new Line();
-        public void Draw(int startX, int startY, int endX, int endY, bool shift)
+        public void Draw(int startX, int startY, int endX, int endY, bool shift, int angles)
         {
             try
             {
@@ -25,8 +25,8 @@ namespace Paint1
                     for (int x = -radius; x <= radius; x++)
                     {
                         int yOTx = Convert.ToInt32(Math.Sqrt(Math.Abs(Math.Pow(radius, 2) - Math.Pow(x, 2))));
-                        line.Draw(ax, ay, x + startX, yOTx + startY, shift);
-                        line.Draw(ax, ay1, x + startX, -yOTx + startY,shift);
+                        line.Draw(ax, ay, x + startX, yOTx + startY, shift, angles);
+                        line.Draw(ax, ay1, x + startX, -yOTx + startY,shift, angles);
                         ax = x + startX;
                         ay = yOTx + startY;
                         ay1 = -yOTx + startY;
@@ -69,10 +69,10 @@ namespace Paint1
 
                         if (i == 0)
                         {
-                            line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), shift);
-                            line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), shift);
-                            line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), shift);
-                            line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), shift);
+                            line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), shift, angles);
+                            line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), shift, angles);
+                            line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), shift, angles);
+                            line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), shift, angles);
 
 
 
@@ -81,10 +81,10 @@ namespace Paint1
                         }
                         else
                         {
-                            line.Draw((startX + tmpX), (startY + tmpY), Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), shift);
-                            line.Draw((startX + tmpX), (startY - tmpY), Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), shift);
-                            line.Draw((startX - tmpX), (startY - tmpY), Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), shift);
-                            line.Draw((startX - tmpX), (startY + tmpY), Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), shift);
+                            line.Draw((startX + tmpX), (startY + tmpY), Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), shift, angles);
+                            line.Draw((startX + tmpX), (startY - tmpY), Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), shift, angles);
+                            line.Draw((startX - tmpX), (startY - tmpY), Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), shift, angles);
+                            line.Draw((startX - tmpX), (startY + tmpY), Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), shift, angles);
                             tmpX = Convert.ToInt32(x);
                             tmpY = Convert.ToInt32(y);
                         }

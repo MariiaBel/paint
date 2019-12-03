@@ -8,6 +8,6 @@ namespace Paint1
 {
     public interface IFigureBuild 
     {
-        void BuildFigure(int startX, int startY, int endX, int endY, bool shift);
+        void BuildFigure(int startX, int startY, int endX, int endY, bool shift, int angles);
     }
 }

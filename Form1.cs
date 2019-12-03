@@ -11,7 +11,7 @@ namespace Paint1
         string flagFigure = "line";
         Bitmap bitmapImage, memoryBitmap;
         bool mouseDown = false, shift = false;
-        int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
+        int angles, firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         
         CustomColorDialog colorDialog = new CustomColorDialog();
 
@@ -48,6 +48,9 @@ namespace Paint1
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
                             break;
+                        case "fpolygon":
+                            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+                            break;
                     }
            
                 }
@@ -61,7 +64,7 @@ namespace Paint1
         private void DrawBrush(MouseEventArgs e)
         {
             Brush.BitmapImage = bitmapImage;
-            figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
+            figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift, angles);
 
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
@@ -83,7 +86,7 @@ namespace Paint1
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {
             CloneBitmap(out memoryBitmap);
-            figure.BuildFigure(x1, y1, x2, y2, shift);
+            figure.BuildFigure(x1, y1, x2, y2, shift, angles);
             canvas.Image = memoryBitmap;
         }
 
@@ -137,7 +140,7 @@ namespace Paint1
         {
             if (flagFigure == "ppolygon")
             {
-                figure.BuildFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY, shift);
+                figure.BuildFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY, shift, angles);
                 bitmapImage = memoryBitmap;
                 canvas.Image = bitmapImage;
                 prevPointX = -1;
@@ -189,6 +192,7 @@ namespace Paint1
 
         private void figurePolygon_Click(object sender, EventArgs e)
         {
+            angles = Convert.ToInt32(numericAngles.Value);
             figure = new Build(new Polygon());
             flagFigure = "fpolygon";
         }

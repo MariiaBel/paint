@@ -14,9 +14,9 @@ namespace Paint1
         {
             figure = check;
         }
-        public void BuildFigure(int startX, int startY, int endX, int endY, bool shift)
+        public void BuildFigure(int startX, int startY, int endX, int endY, bool shift, int angles)
         {
-            figure.Draw(startX, startY, endX, endY, shift);
+            figure.Draw(startX, startY, endX, endY, shift, angles);
         }
         
         

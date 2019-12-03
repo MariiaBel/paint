@@ -37,7 +37,7 @@ namespace Paint1
                         case "brush":
                             DrawBrush(e);
                             break;
-                        case "ppolugon":
+                        case "ppolygon":
                             return;
                         case "square":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
@@ -48,8 +48,7 @@ namespace Paint1
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
                             break;
-                    }
-           
+                    }           
                 }
                 else
                 {
@@ -72,10 +71,9 @@ namespace Paint1
 
         private void DrawFigureByPoint(MouseEventArgs e)
         {
-            DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
-
             prevPointX = firstPointX;
             prevPointY = firstPointY;
+            DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
         }
 
 

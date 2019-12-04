@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel = new System.Windows.Forms.Panel();
+            this.checkFill = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.figurePolygon = new System.Windows.Forms.Button();
             this.figureTriangle = new System.Windows.Forms.Button();
@@ -37,12 +38,12 @@
             this.figureSquare = new System.Windows.Forms.Button();
             this.pointPolygon = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.fill = new System.Windows.Forms.Button();
             this.colorBt = new System.Windows.Forms.Button();
             this.trackBrush = new System.Windows.Forms.TrackBar();
             this.cleanBt = new System.Windows.Forms.Button();
             this.brushTool = new System.Windows.Forms.Button();
             this.canvas = new System.Windows.Forms.PictureBox();
-            this.fill = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.checkFill);
             this.panel.Controls.Add(this.panel2);
             this.panel.Controls.Add(this.panel1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -60,6 +62,21 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(1488, 73);
             this.panel.TabIndex = 0;
+            // 
+            // checkFill
+            // 
+            this.checkFill.AutoSize = true;
+            this.checkFill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkFill.FlatAppearance.BorderSize = 0;
+            this.checkFill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkFill.Font = new System.Drawing.Font("Niagara Engraved", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkFill.Location = new System.Drawing.Point(335, 15);
+            this.checkFill.Name = "checkFill";
+            this.checkFill.Size = new System.Drawing.Size(75, 23);
+            this.checkFill.TabIndex = 8;
+            this.checkFill.Text = "Заливка";
+            this.checkFill.UseVisualStyleBackColor = true;
+            this.checkFill.CheckedChanged += new System.EventHandler(this.checkFill_CheckedChanged);
             // 
             // panel2
             // 
@@ -164,6 +181,21 @@
             this.panel1.Size = new System.Drawing.Size(177, 55);
             this.panel1.TabIndex = 6;
             // 
+            // fill
+            // 
+            this.fill.BackColor = System.Drawing.Color.White;
+            this.fill.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fill.BackgroundImage")));
+            this.fill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.fill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.fill.FlatAppearance.BorderSize = 0;
+            this.fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fill.Location = new System.Drawing.Point(3, 26);
+            this.fill.Name = "fill";
+            this.fill.Size = new System.Drawing.Size(17, 17);
+            this.fill.TabIndex = 5;
+            this.fill.UseVisualStyleBackColor = false;
+            this.fill.Click += new System.EventHandler(this.fill_Click);
+            // 
             // colorBt
             // 
             this.colorBt.BackColor = System.Drawing.Color.Black;
@@ -234,21 +266,6 @@
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
-            // fill
-            // 
-            this.fill.BackColor = System.Drawing.Color.White;
-            this.fill.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fill.BackgroundImage")));
-            this.fill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.fill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.fill.FlatAppearance.BorderSize = 0;
-            this.fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fill.Location = new System.Drawing.Point(3, 26);
-            this.fill.Name = "fill";
-            this.fill.Size = new System.Drawing.Size(17, 17);
-            this.fill.TabIndex = 5;
-            this.fill.UseVisualStyleBackColor = false;
-            this.fill.Click += new System.EventHandler(this.fill_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +283,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBrush)).EndInit();
@@ -289,6 +307,7 @@
         private System.Windows.Forms.Button figurePolygon;
         private System.Windows.Forms.Button figureTriangle;
         private System.Windows.Forms.Button fill;
+        private System.Windows.Forms.CheckBox checkFill;
     }
 }
 

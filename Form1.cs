@@ -7,14 +7,13 @@ namespace Paint1
 {
     public partial class Form1 : Form
     {
-        IFill typeFill = new FillSolid();
-
-        IFigureBuild figure = new Build(new Line());
+        IFill typeFill = null;
+        IFigure contur = new Line();
+        IFigureBuild figure = new Build(new Line(), new FillSolid());
         string flagFigure = "line";
         Bitmap bitmapImage, memoryBitmap;
-        bool mouseDown = false, shift = false;
+        bool mouseDown = false, shift = false, autoFill = false;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
-        
         CustomColorDialog colorDialog = new CustomColorDialog();
 
 
@@ -30,7 +29,6 @@ namespace Paint1
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             canvas.Image = bitmapImage;
-
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -39,6 +37,10 @@ namespace Paint1
             {
                 if(mouseDown)
                 {
+                    if (autoFill)
+                    {
+                        canvas.Image = typeFill.ReturnBit();
+                    }
                     switch (flagFigure)
                     {
                         case "brush":
@@ -54,10 +56,8 @@ namespace Paint1
                             break;
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
-                            break;
-                        
+                            break; 
                     }
-           
                 }
                 else
                 {
@@ -70,18 +70,14 @@ namespace Paint1
         {
             Brush.BitmapImage = bitmapImage;
             figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
-
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
-
             canvas.Image = bitmapImage;
-
         }
 
         private void DrawFigureByPoint(MouseEventArgs e)
         {
             DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
-
             prevPointX = firstPointX;
             prevPointY = firstPointY;
         }
@@ -100,7 +96,6 @@ namespace Paint1
             Rectangle r = new Rectangle(0, 0, bitmapImage.Width-1, bitmapImage.Height-1 );
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             Brush.BitmapImage = btm;
-
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -108,13 +103,11 @@ namespace Paint1
             mouseDown = true;
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
-            if (flagFigure == "fillSolid")
-            {
-                typeFill.Fill(e.X, e.Y, Brush.BrushColor, bitmapImage);
+            if (flagFigure == "fillSolid") FillCanvas(e);
+           
+            figure = new Build(contur, typeFill);
+            figure.SetModify(Brush.BrushColor, autoFill, bitmapImage);
 
-            }
-          
-          
             if (flagFigure == "ppolygon" && prevPointX == -1 && prevPointY == -1)
             {
                 CloneBitmap(out memoryBitmap);
@@ -123,6 +116,13 @@ namespace Paint1
                 memoryFirstPointX = firstPointX;
                 memoryFirstPointY = firstPointY;
             }
+        }
+
+        private void FillCanvas(MouseEventArgs e)
+        {
+            IFill typeFill = new FillSolid(bitmapImage);
+            typeFill.Fill(e.X, e.Y, Brush.BrushColor);
+            canvas.Image = typeFill.ReturnBit();
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
@@ -185,12 +185,10 @@ namespace Paint1
         {
            
         }
-
         private void figureSquare_BackColorChanged(object sender, EventArgs e)
         {
 
         }
-
         private void canvas_SizeChanged(object sender, EventArgs e)
         {
             Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
@@ -199,51 +197,63 @@ namespace Paint1
             bitmapImage = btm;
             canvas.Image = bitmapImage;
         }
-
         private void figurePolygon_Click(object sender, EventArgs e)
         {
-            figure = new Build(new Polygon());
+            
+            contur = new Polygon();
             flagFigure = "fpolygon";
             ButtonChange(figurePolygon);
         }
-
         private void fill_Click(object sender, EventArgs e)
         {
             flagFigure = "fillSolid";
             typeFill = new FillSolid();
+           
+            ButtonChange(fill);
         }
-
-        private void figureTriangle_Click(object sender, EventArgs e)
+        private void checkFill_CheckedChanged(object sender, EventArgs e)
         {
-            figure = new Build(new Triangle());
+            if (!autoFill)
+            {
+                autoFill = true;
+                typeFill = new FillSolid();
+                
+            } else
+            {
+                autoFill = false;
+                typeFill = null;
+                
+            }
+        }
+        private void figureTriangle_Click(object sender, EventArgs e)
+        {           
+            contur = new Triangle();
             flagFigure = "triangle";
             ButtonChange(figureTriangle);
         }
         private void figureCircle_Click(object sender, EventArgs e)
         {
-            figure = new Build(new Circle());
+            contur = new Circle();
             flagFigure = "circle";
             ButtonChange(figureCircle);
         }
-
         private void figureSquare_Click(object sender, EventArgs e)
         {
-            figure = new Build(new Square());
+            contur = new Square();
             flagFigure = "square";
             ButtonChange(figureSquare);
-
         }
 
         private void pointPolygon_Click(object sender, EventArgs e)
-        {
-            figure = new Build(new Polygon());
+        {         
+            contur = new Polygon();
             flagFigure = "ppolygon";
             ButtonChange(pointPolygon);
         }
 
         private void brushTool_Click(object sender, EventArgs e)
         {
-            figure = new Build(new Line());
+            contur = new Line();
             flagFigure = "brush";
             ButtonChange(brushTool);
         }
@@ -252,7 +262,6 @@ namespace Paint1
         {
             Color lastColorBrush = Brush.BrushColor;
             int lastThicknessBrush = Brush.BrushThickness;
-
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             canvas.Image = bitmapImage;
             Brush.BitmapImage = bitmapImage;
@@ -265,20 +274,13 @@ namespace Paint1
             if (button == null)
             {
                 master.BackColor = Color.Silver;
-               
             }
             else
             {
-                button.BackColor = Color.White;
-             
+                button.BackColor = Color.White;         
                 master.BackColor = Color.Silver;
-                
-
             }
-
             button = master;
-
         }
-
     }
 }

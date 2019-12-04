@@ -49,7 +49,7 @@
     <Compile Include="Brush.cs" />
     <Compile Include="BuildFigure.cs" />
     <Compile Include="figures\FigureByPoint.cs" />
-    <Compile Include="FigureBuild.cs" />
+    <Compile Include="IFigureBuild.cs" />
     <Compile Include="figures\Polygon.cs" />
     <Compile Include="figures\Triangle.cs" />
     <Compile Include="CustomColorDialog.cs">

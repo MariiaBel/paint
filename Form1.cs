@@ -6,11 +6,12 @@ namespace Paint1
 {
     public partial class Form1 : Form
     {
-
         IFigureBuild figure = new Build(new Line());
+        string flagFigure = "line";
+        //jgfhg
+        //Console.WriteLine("Here test");
+        //hgjfhgf
 
-        string flagFigure = "";
-        Console.WriteLine("Here");
         Bitmap bitmapImage, memoryBitmap;
         bool mouseDown = false, shift = false;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;

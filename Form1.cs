@@ -178,11 +178,11 @@ namespace Paint1
 
         private void canvas_SizeChanged(object sender, EventArgs e)
         {
-            Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
-            Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
-            btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            bitmapImage = btm;
-            canvas.Image = bitmapImage;
+            //Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
+            //Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
+            //btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
+            //bitmapImage = btm;
+            //canvas.Image = bitmapImage;
         }
 
         private void figurePolygon_Click(object sender, EventArgs e)

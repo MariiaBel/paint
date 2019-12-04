@@ -8,7 +8,9 @@ namespace Paint1
     {
 
         IFigureBuild figure = new Build(new Line());
-        string flagFigure = "line";
+
+        string flagFigure = "";
+        Console.WriteLine("Here");
         Bitmap bitmapImage, memoryBitmap;
         bool mouseDown = false, shift = false;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;

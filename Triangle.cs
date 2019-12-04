@@ -11,6 +11,9 @@ namespace Paint1
         private IFigure line = new Line();
         public void Draw(int startX, int startY, int endX, int endY, bool shift)
         {
+            // треугольник
+            //fjfhg
+
             if (shift)
             {
                 line.Draw(startX, startY, endX, endY, shift);

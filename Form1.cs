@@ -46,7 +46,7 @@ namespace Paint1
                         case "brush":
                             DrawBrush(e);
                             break;
-                        case "ppolugon":
+                        case "ppolygon":
                             return;
                         case "square":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
@@ -57,7 +57,7 @@ namespace Paint1
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
                             break; 
-                    }
+                    }           
                 }
                 else
                 {
@@ -77,9 +77,9 @@ namespace Paint1
 
         private void DrawFigureByPoint(MouseEventArgs e)
         {
-            DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
             prevPointX = firstPointX;
             prevPointY = firstPointY;
+            DrawFigure(prevPointX, prevPointY, e.Location.X, e.Location.Y);
         }
 
 
@@ -191,11 +191,11 @@ namespace Paint1
         }
         private void canvas_SizeChanged(object sender, EventArgs e)
         {
-            Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
-            Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
-            btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            bitmapImage = btm;
-            canvas.Image = bitmapImage;
+            //Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
+            //Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
+            //btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
+            //bitmapImage = btm;
+            //canvas.Image = bitmapImage;
         }
         private void figurePolygon_Click(object sender, EventArgs e)
         {

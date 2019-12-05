@@ -73,16 +73,13 @@ namespace Paint1
 
         private static void MakePoint(int startX, int startY, int x, int y)
         {
-            if (startX < 0 || startY < 0)
-            {
-                return;
-            }
+
 
             int thinkness = BrushThickness - 1;
             int starPointX = startX - thinkness;
             int starPointY = startY - thinkness;
             int endPointX = startX + thinkness;
-            int endPointY= startY + thinkness;
+            int endPointY = startY + thinkness;
             int leftedPoint = BrushThickness / 2;
             try
             {
@@ -90,32 +87,16 @@ namespace Paint1
                 {
                     for (int j = starPointY + leftedPoint; j <= endPointY - leftedPoint; j++)
                     {
-                        BitmapImage.SetPixel(i + x, j + y, BrushColor);
+                        if (i + x > 0 && j + y > 0 && i + x < BitmapImage.Width && j + y < BitmapImage.Height)
+                        {
+                            BitmapImage.SetPixel(i + x, j + y, BrushColor);
+                        }
                     }
-
                     if (i < starPointX + BrushThickness / 2) leftedPoint--;
                     if (i > endPointX - BrushThickness / 2) leftedPoint++;
                 }
             }
-            catch {}
-        }
-
-        private static void MakePointMyFirstResult(int startX, int startY, int x, int y)
-        {
-            try
-            {
-                BitmapImage.SetPixel(startX + x, startY + y, BrushColor);
-                for (int w = 1; w < BrushThickness; w++)
-                {
-                    BitmapImage.SetPixel(startX + x + w, startY + y + w, BrushColor);
-                    for (int t = 0; t < w; t++)
-                    {
-                        BitmapImage.SetPixel(startX + x + w, startY + y + t, BrushColor);
-                        BitmapImage.SetPixel(startX + x + t, startY + y + w, BrushColor);
-                    }
-                }
-            }
-            catch {}
+            catch { }
         }
     }
 }

@@ -14,21 +14,22 @@ namespace Paint1
         private bool checkFill;
         private Color brush;
         private Bitmap bitmap;
-        private int x, y, countCheckDown = 0, countCheckMove = 0;
+        private int x, y;
 
 
         public Bitmap ReturnBit()
         {
             return this.bitmap;
         }
-       
 
-        public void SetModify(Color brush, bool autoFill, Bitmap bitmap)
+
+        public void SetModify(Color brush, bool autoFill, Bitmap bitmap, int x, int y)
         {
             this.brush = brush;
             checkFill = autoFill;
             this.bitmap = bitmap;
-            countCheckDown = 0;
+            this.x = x;
+            this.y = y;
         }
 
         public Build(IFigure check, IFill fill)
@@ -41,23 +42,10 @@ namespace Paint1
         {
             if (checkFill)
             {
-                if (countCheckDown == 0)
-                {
-                    countCheckDown++;
-                    x = startX;
-                    y = startY;
-                }
-
-                if (countCheckMove > 3)
-                {
-                    figure.Draw(startX, startY, endX, endY, shift);
-                    Fill(x, y, brush);
-                } else
-                {
-                    figure.Draw(startX, startY, endX, endY, shift);
-                }
-
-                countCheckMove++; 
+               
+                figure.Draw(startX, startY, endX, endY, shift);
+                Fill(x, y, brush);
+              
             } else
             {
                 figure.Draw(startX, startY, endX, endY, shift);
@@ -70,7 +58,7 @@ namespace Paint1
             //Rectangle r = new Rectangle(0, 0, bitmap.Width - 1, bitmap.Height - 1);
             //Bitmap btm = bitmap.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             //bitmap = btm;
-            stateFill.Fill(x, y, brush);
+            stateFill.Fill(this.x, this.y, brush);
             
         }
       

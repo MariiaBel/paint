@@ -16,16 +16,8 @@ namespace Paint1
         }
        
         public Brush(ref Bitmap btm)
-        {
-            if (btm == null)
-            {
-                //BitmapImage = new Bitmap(canvas.Width, canvas.Height);
-            }
-            else
-            {
-                BitmapImage = btm;
-            }
-        
+        { 
+            BitmapImage = btm;
         }
 
         public static void DrawLine(int startX, int startY, int endX, int endY)

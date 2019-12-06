@@ -66,15 +66,12 @@ namespace Paint1
                             y = Math.Sqrt((Math.Pow(small, 2) / Math.Pow(big, 2)) * (Math.Pow(big, 2) - Math.Pow(x, 2)));
                         }
 
-
                         if (i == 0)
                         {
                             line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), Convert.ToInt32(startX + x), Convert.ToInt32(startY + y), shift);
                             line.Draw(Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), Convert.ToInt32(startX + x), Convert.ToInt32(startY - y), shift);
                             line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), Convert.ToInt32(startX - x), Convert.ToInt32(startY - y), shift);
                             line.Draw(Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), Convert.ToInt32(startX - x), Convert.ToInt32(startY + y), shift);
-
-
 
                             tmpX = Convert.ToInt32(x);
                             tmpY = Convert.ToInt32(y);

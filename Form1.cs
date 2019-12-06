@@ -37,10 +37,6 @@ namespace Paint1
             {
                 if(mouseDown)
                 {
-                    if (autoFill)
-                    {
-                        canvas.Image = typeFill.ReturnBit();
-                    }
                     switch (flagFigure)
                     {
                         case "brush":
@@ -86,16 +82,24 @@ namespace Paint1
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {
+            int x = (x1 + x2) / 2;
+            int y = (y1 + y2) / 2;
+            memoryBitmap = bitmapImage;
             CloneBitmap(out memoryBitmap);
+            figure = new Build(contur, typeFill);
+            figure.SetModify(Color.Red, autoFill, memoryBitmap, x, y);
             figure.BuildFigure(x1, y1, x2, y2, shift);
             canvas.Image = memoryBitmap;
+            
         }
 
         private void CloneBitmap(out Bitmap btm)
         {
+          
             Rectangle r = new Rectangle(0, 0, bitmapImage.Width-1, bitmapImage.Height-1 );
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             Brush.BitmapImage = btm;
+            
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -103,11 +107,11 @@ namespace Paint1
             mouseDown = true;
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
-            if (flagFigure == "fillSolid") FillCanvas(e);
-           
-            figure = new Build(contur, typeFill);
-            figure.SetModify(Brush.BrushColor, autoFill, bitmapImage);
-
+            if (flagFigure == "fillSolid")
+            {
+                FillCanvas(e);
+            }
+            
             if (flagFigure == "ppolygon" && prevPointX == -1 && prevPointY == -1)
             {
                 CloneBitmap(out memoryBitmap);

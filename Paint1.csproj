@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Brush.cs" />
     <Compile Include="BuildFigure.cs" />
+    <Compile Include="DrawPixel.cs" />
     <Compile Include="figures\FigureByPoint.cs" />
     <Compile Include="IFigureBuild.cs" />
     <Compile Include="figures\Polygon.cs" />

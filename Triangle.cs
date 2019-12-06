@@ -58,10 +58,10 @@ namespace Paint1
                         {
                             x4 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
                         }
-                        //if(Math.Atan(h / w) <= Math.PI / 6)
-                        //{
-
-                        //}
+                        if(w != 0 && Math.Atan(h / w) <= Math.PI / 6)
+                        {
+                            x4 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) + h * Math.Sin(Math.PI / 3)));
+                        }
                         int y4 = Convert.ToInt32(Math.Abs(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) - startY));
                         line.Draw(endX, endY, x4, y4, shift);
                         line.Draw(x4, y4, startX, startY, shift);

@@ -263,6 +263,7 @@ namespace Paint1
             Color lastColorBrush = Brush.BrushColor;
             int lastThicknessBrush = Brush.BrushThickness;
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            memoryBitmap = bitmapImage;
             canvas.Image = bitmapImage;
             Brush.BitmapImage = bitmapImage;
             Brush.BrushColor = lastColorBrush;

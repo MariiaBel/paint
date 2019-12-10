@@ -23,6 +23,12 @@ namespace Paint1
         }
 
 
+        public void SetBit(Bitmap bit)
+        {
+            this.bitmap = bit;
+        }
+
+
         public void SetModify(Color brush, bool autoFill, Bitmap bitmap, int x, int y)
         {
             this.brush = brush;
@@ -44,8 +50,14 @@ namespace Paint1
             {
                
                 figure.Draw(bitmap, startX, startY, endX, endY, shift);
-                Fill(x, y, brush);
-              
+                if ((startX < x && x < endX ) || (endX  < x && x < startX ) )
+                {
+                    if ((startY < y && y < endY) || (endY < y && y < startY ))
+                    {
+                        Fill(x, y, brush);
+                    }
+
+                }
             } else
             {
                 figure.Draw(bitmap, startX, startY, endX, endY, shift);

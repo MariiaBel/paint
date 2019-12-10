@@ -14,8 +14,7 @@ namespace Paint1
         private IFigure line = new Line();
         public void Draw(Bitmap bitmap, int startX, int startY, int endX, int endY, bool shift)
         {
-            try
-            {
+
                 int radius = Convert.ToInt32(Math.Sqrt(Math.Pow(endX - startX, 2) + Math.Pow(endY - startY, 2)));
                 if (shift)
                 {
@@ -50,6 +49,10 @@ namespace Paint1
                         small = w;
                         flagVertical = true;
                     }
+                if (big == 0)
+                {
+                    return;
+                }
                     int tmpX = 0, tmpY = 0;
 
                     for (int i = 0; i <= big; i++)
@@ -89,11 +92,7 @@ namespace Paint1
 
                     }
                 }
-            }
-            catch (Exception)
-            {
-
-            }
+    
       
         }
     }

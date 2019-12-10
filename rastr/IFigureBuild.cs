@@ -12,5 +12,6 @@ namespace Paint1
         void BuildFigure(int startX, int startY, int endX, int endY, bool shift);
         void SetModify(Color brush, bool autoFill, Bitmap bitmap, int x, int y);
         Bitmap ReturnBit();
+        void SetBit(Bitmap bit);
     }
 }

@@ -67,7 +67,7 @@ namespace Paint1
         {
             Brush.BitmapImage = bitmapImage;
             figure = new Build(contur, typeFill);
-           
+            figure.SetBit(bitmapImage);
             figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;

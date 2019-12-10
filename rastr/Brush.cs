@@ -73,8 +73,7 @@ namespace Paint1
             int endPointX = startX + thinkness;
             int endPointY = startY + thinkness;
             int leftedPoint = BrushThickness / 2;
-            try
-            {
+
                 for (int i = starPointX; i <= endPointX; i++)
                 {
                     for (int j = starPointY + leftedPoint; j <= endPointY - leftedPoint; j++)
@@ -87,8 +86,7 @@ namespace Paint1
                     if (i < starPointX + BrushThickness / 2) leftedPoint--;
                     if (i > endPointX - BrushThickness / 2) leftedPoint++;
                 }
-            }
-            catch { }
+  
         }
     }
 }

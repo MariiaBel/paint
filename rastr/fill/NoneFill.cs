@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Paint1
+namespace Paint1.fill
 {
-    public interface IFigure
+    class NoneFill
     {
-        void Draw(int startX, int startY, int endX, int endY, bool shift);
     }
 }

@@ -20,7 +20,7 @@ namespace Paint1
             BitmapImage = btm;
         }
 
-        public static void DrawLine(int startX, int startY, int endX, int endY)
+        public static void DrawLine(Bitmap bitmap, int startX, int startY, int endX, int endY)
         {
             double w = endX - startX,
                 h = endY - startY,
@@ -29,16 +29,16 @@ namespace Paint1
             if(Math.Abs(w) > Math.Abs(h))
             {                
                 speed = (w == 0) ? 1 : h / w;                
-                SetPixelByLength(Convert.ToInt32(w), startX, startY, speed, false);
+                SetPixelByLength(bitmap, Convert.ToInt32(w), startX, startY, speed, false);
             }
             else
             {
                 speed = (h == 0) ? 1 : w / h;
-                SetPixelByLength(Convert.ToInt32(h), startX, startY, speed);
+                SetPixelByLength(bitmap, Convert.ToInt32(h), startX, startY, speed);
             }
         }
 
-        private static void SetPixelByLength(int length, int startX, int startY, double speed, bool sideX = true)
+        private static void SetPixelByLength(Bitmap bitmap, int length, int startX, int startY, double speed, bool sideX = true)
         {
             int istart = 0;
             int iend = length;
@@ -54,16 +54,16 @@ namespace Paint1
                 int iSpeed = Convert.ToInt32(i * speed);
                 if (sideX)
                 {
-                    MakePoint(startX, startY, iSpeed, i);                   
+                    MakePoint(bitmap, startX, startY, iSpeed, i);                   
                 }
                 else
                 {
-                    MakePoint(startX, startY, i, iSpeed);
+                    MakePoint(bitmap, startX, startY, i, iSpeed);
                 }
             }
         }
 
-        private static void MakePoint(int startX, int startY, int x, int y)
+        private static void MakePoint(Bitmap bitmap, int startX, int startY, int x, int y)
         {
 
 
@@ -79,9 +79,9 @@ namespace Paint1
                 {
                     for (int j = starPointY + leftedPoint; j <= endPointY - leftedPoint; j++)
                     {
-                        if (i + x > 0 && j + y > 0 && i + x < BitmapImage.Width && j + y < BitmapImage.Height)
+                        if (i + x > 0 && j + y > 0 && i + x < bitmap.Width && j + y < bitmap.Height)
                         {
-                            BitmapImage.SetPixel(i + x, j + y, BrushColor);
+                            bitmap.SetPixel(i + x, j + y, BrushColor);
                         }
                     }
                     if (i < starPointX + BrushThickness / 2) leftedPoint--;

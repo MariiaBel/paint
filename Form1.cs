@@ -16,7 +16,7 @@ namespace Paint1
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         CustomColorDialog colorDialog = new CustomColorDialog();
 
-
+        Graphics RastrGraph;
 
         Button button = null;
 
@@ -28,7 +28,8 @@ namespace Paint1
         private void Form1_Load(object sender, EventArgs e)
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
-            canvas.Image = bitmapImage;
+            
+            
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -65,6 +66,8 @@ namespace Paint1
         private void DrawBrush(MouseEventArgs e)
         {
             Brush.BitmapImage = bitmapImage;
+            figure = new Build(contur, typeFill);
+           
             figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
@@ -82,14 +85,19 @@ namespace Paint1
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {
+            
             int x = (x1 + x2) / 2;
             int y = (y1 + y2) / 2;
-            memoryBitmap = bitmapImage;
             CloneBitmap(out memoryBitmap);
+            
+            RastrGraph = Graphics.FromImage(memoryBitmap);
+            Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
             figure = new Build(contur, typeFill);
-            figure.SetModify(Color.Red, autoFill, memoryBitmap, x, y);
+            figure.SetModify(Color.Red, autoFill, bitmap, x, y);
             figure.BuildFigure(x1, y1, x2, y2, shift);
-            canvas.Image = memoryBitmap;
+
+            RastrGraph.DrawImage(figure.ReturnBit(), 0, 0);
+            canvas.Image = memoryBitmap; 
             
         }
 
@@ -215,6 +223,14 @@ namespace Paint1
            
             ButtonChange(fill);
         }
+
+        private void векторнаяГрафикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vector vector = new Vector();
+            vector.Show();
+            this.Hide();
+        }
+
         private void checkFill_CheckedChanged(object sender, EventArgs e)
         {
             if (!autoFill)

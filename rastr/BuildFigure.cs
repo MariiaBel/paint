@@ -43,12 +43,12 @@ namespace Paint1
             if (checkFill)
             {
                
-                figure.Draw(startX, startY, endX, endY, shift);
+                figure.Draw(bitmap, startX, startY, endX, endY, shift);
                 Fill(x, y, brush);
               
             } else
             {
-                figure.Draw(startX, startY, endX, endY, shift);
+                figure.Draw(bitmap, startX, startY, endX, endY, shift);
             }
         }
 
@@ -58,10 +58,10 @@ namespace Paint1
             //Rectangle r = new Rectangle(0, 0, bitmap.Width - 1, bitmap.Height - 1);
             //Bitmap btm = bitmap.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             //bitmap = btm;
-            stateFill.Fill(this.x, this.y, brush);
-            
+            stateFill.Fill(this.x, this.y, brush);   
         }
       
+
 
 
     }

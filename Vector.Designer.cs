@@ -1,6 +1,6 @@
 ﻿namespace Paint1
 {
-    partial class Form1
+    partial class Vector
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Vector));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.растроваяГрафикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel = new System.Windows.Forms.Panel();
-            this.checkFill = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.figurePolygon = new System.Windows.Forms.Button();
             this.figureTriangle = new System.Windows.Forms.Button();
@@ -38,49 +43,77 @@
             this.figureSquare = new System.Windows.Forms.Button();
             this.pointPolygon = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.fill = new System.Windows.Forms.Button();
             this.colorBt = new System.Windows.Forms.Button();
             this.trackBrush = new System.Windows.Forms.TrackBar();
             this.cleanBt = new System.Windows.Forms.Button();
             this.brushTool = new System.Windows.Forms.Button();
             this.canvas = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.векторнаяГрафикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.menuStrip1.SuspendLayout();
             this.panel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBrush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.менюToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // менюToolStripMenuItem
+            // 
+            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.сохранитьКакToolStripMenuItem,
+            this.загрузитьToolStripMenuItem,
+            this.растроваяГрафикаToolStripMenuItem});
+            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Text = "Меню";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            // 
+            // сохранитьКакToolStripMenuItem
+            // 
+            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            // 
+            // растроваяГрафикаToolStripMenuItem
+            // 
+            this.растроваяГрафикаToolStripMenuItem.Name = "растроваяГрафикаToolStripMenuItem";
+            this.растроваяГрафикаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.растроваяГрафикаToolStripMenuItem.Text = "Растровая графика";
+            this.растроваяГрафикаToolStripMenuItem.Click += new System.EventHandler(this.растроваяГрафикаToolStripMenuItem_Click);
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.checkFill);
+            this.panel.Controls.Add(this.button2);
             this.panel.Controls.Add(this.panel2);
             this.panel.Controls.Add(this.panel1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel.Location = new System.Drawing.Point(0, 24);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1488, 73);
-            this.panel.TabIndex = 0;
-            // 
-            // checkFill
-            // 
-            this.checkFill.AutoSize = true;
-            this.checkFill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkFill.FlatAppearance.BorderSize = 0;
-            this.checkFill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkFill.Font = new System.Drawing.Font("Niagara Engraved", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkFill.Location = new System.Drawing.Point(335, 15);
-            this.checkFill.Name = "checkFill";
-            this.checkFill.Size = new System.Drawing.Size(75, 23);
-            this.checkFill.TabIndex = 8;
-            this.checkFill.Text = "Заливка";
-            this.checkFill.UseVisualStyleBackColor = true;
-            this.checkFill.CheckedChanged += new System.EventHandler(this.checkFill_CheckedChanged);
+            this.panel.Size = new System.Drawing.Size(800, 73);
+            this.panel.TabIndex = 2;
             // 
             // panel2
             // 
@@ -109,7 +142,6 @@
             this.figurePolygon.Size = new System.Drawing.Size(17, 17);
             this.figurePolygon.TabIndex = 8;
             this.figurePolygon.UseVisualStyleBackColor = false;
-            this.figurePolygon.Click += new System.EventHandler(this.figurePolygon_Click);
             // 
             // figureTriangle
             // 
@@ -124,7 +156,6 @@
             this.figureTriangle.Size = new System.Drawing.Size(17, 17);
             this.figureTriangle.TabIndex = 7;
             this.figureTriangle.UseVisualStyleBackColor = false;
-            this.figureTriangle.Click += new System.EventHandler(this.figureTriangle_Click);
             // 
             // figureCircle
             // 
@@ -139,7 +170,6 @@
             this.figureCircle.Size = new System.Drawing.Size(17, 17);
             this.figureCircle.TabIndex = 6;
             this.figureCircle.UseVisualStyleBackColor = false;
-            this.figureCircle.Click += new System.EventHandler(this.figureCircle_Click);
             // 
             // figureSquare
             // 
@@ -153,8 +183,6 @@
             this.figureSquare.Size = new System.Drawing.Size(17, 17);
             this.figureSquare.TabIndex = 3;
             this.figureSquare.UseVisualStyleBackColor = false;
-            this.figureSquare.BackColorChanged += new System.EventHandler(this.figureSquare_BackColorChanged);
-            this.figureSquare.Click += new System.EventHandler(this.figureSquare_Click);
             // 
             // pointPolygon
             // 
@@ -169,13 +197,11 @@
             this.pointPolygon.Size = new System.Drawing.Size(17, 17);
             this.pointPolygon.TabIndex = 5;
             this.pointPolygon.UseVisualStyleBackColor = false;
-            this.pointPolygon.Click += new System.EventHandler(this.pointPolygon_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.fill);
             this.panel1.Controls.Add(this.colorBt);
             this.panel1.Controls.Add(this.trackBrush);
             this.panel1.Controls.Add(this.cleanBt);
@@ -184,21 +210,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(177, 55);
             this.panel1.TabIndex = 6;
-            // 
-            // fill
-            // 
-            this.fill.BackColor = System.Drawing.Color.White;
-            this.fill.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fill.BackgroundImage")));
-            this.fill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.fill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.fill.FlatAppearance.BorderSize = 0;
-            this.fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fill.Location = new System.Drawing.Point(3, 26);
-            this.fill.Name = "fill";
-            this.fill.Size = new System.Drawing.Size(17, 17);
-            this.fill.TabIndex = 5;
-            this.fill.UseVisualStyleBackColor = false;
-            this.fill.Click += new System.EventHandler(this.fill_Click);
             // 
             // colorBt
             // 
@@ -212,7 +223,6 @@
             this.colorBt.Size = new System.Drawing.Size(17, 17);
             this.colorBt.TabIndex = 1;
             this.colorBt.UseVisualStyleBackColor = false;
-            this.colorBt.Click += new System.EventHandler(this.colorBt_Click);
             // 
             // trackBrush
             // 
@@ -222,8 +232,6 @@
             this.trackBrush.Name = "trackBrush";
             this.trackBrush.Size = new System.Drawing.Size(126, 37);
             this.trackBrush.TabIndex = 2;
-            this.trackBrush.Scroll += new System.EventHandler(this.trackBrush_Scroll);
-            this.trackBrush.ValueChanged += new System.EventHandler(this.trackBrush_ValueChanged);
             // 
             // cleanBt
             // 
@@ -232,12 +240,11 @@
             this.cleanBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cleanBt.FlatAppearance.BorderSize = 0;
             this.cleanBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cleanBt.Location = new System.Drawing.Point(25, 26);
+            this.cleanBt.Location = new System.Drawing.Point(3, 26);
             this.cleanBt.Name = "cleanBt";
             this.cleanBt.Size = new System.Drawing.Size(17, 17);
             this.cleanBt.TabIndex = 1;
             this.cleanBt.UseVisualStyleBackColor = true;
-            this.cleanBt.Click += new System.EventHandler(this.cleanBt_Click);
             // 
             // brushTool
             // 
@@ -261,90 +268,67 @@
             this.canvas.ErrorImage = null;
             this.canvas.Location = new System.Drawing.Point(0, 97);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(1488, 801);
-            this.canvas.TabIndex = 0;
+            this.canvas.Size = new System.Drawing.Size(800, 353);
+            this.canvas.TabIndex = 3;
             this.canvas.TabStop = false;
-            this.canvas.SizeChanged += new System.EventHandler(this.canvas_SizeChanged);
-            this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
-            // menuStrip1
+            // button2
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1488, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.button2.Location = new System.Drawing.Point(361, 9);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 54);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Change";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // менюToolStripMenuItem
-            // 
-            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.векторнаяГрафикаToolStripMenuItem});
-            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.менюToolStripMenuItem.Text = "Меню";
-            // 
-            // векторнаяГрафикаToolStripMenuItem
-            // 
-            this.векторнаяГрафикаToolStripMenuItem.Name = "векторнаяГрафикаToolStripMenuItem";
-            this.векторнаяГрафикаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.векторнаяГрафикаToolStripMenuItem.Text = "Векторная графика";
-            this.векторнаяГрафикаToolStripMenuItem.Click += new System.EventHandler(this.векторнаяГрафикаToolStripMenuItem_Click);
-            // 
-            // Form1
+            // Vector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1488, 898);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.canvas);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.menuStrip1);
-            this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.AutoSizeChanged += new System.EventHandler(this.Form1_SizeChanged);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.Name = "Vector";
+            this.Text = "Vector";
+            this.Load += new System.EventHandler(this.Vector_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBrush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.PictureBox canvas;
-        private System.Windows.Forms.Button cleanBt;
-        private System.Windows.Forms.Button colorBt;
-        private System.Windows.Forms.Button figureSquare;
-        private System.Windows.Forms.Button brushTool;
-        private System.Windows.Forms.Button pointPolygon;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button figureCircle;
-        public System.Windows.Forms.TrackBar trackBrush;
-        private System.Windows.Forms.Button figurePolygon;
-        private System.Windows.Forms.Button figureTriangle;
-        private System.Windows.Forms.Button fill;
-        private System.Windows.Forms.CheckBox checkFill;
+
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem векторнаяГрафикаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem растроваяГрафикаToolStripMenuItem;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button figurePolygon;
+        private System.Windows.Forms.Button figureTriangle;
+        private System.Windows.Forms.Button figureCircle;
+        private System.Windows.Forms.Button figureSquare;
+        private System.Windows.Forms.Button pointPolygon;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button colorBt;
+        public System.Windows.Forms.TrackBar trackBrush;
+        private System.Windows.Forms.Button cleanBt;
+        private System.Windows.Forms.Button brushTool;
+        public System.Windows.Forms.PictureBox canvas;
+        private System.Windows.Forms.Button button2;
     }
 }
-

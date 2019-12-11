@@ -86,7 +86,6 @@ namespace Paint1
 
         private void DrawBrush(MouseEventArgs e)
         {
-            Brush.BitmapImage = bitmapImage;
             figure = new Build(contur, typeFill);
             
             figure.MyBitmap = bitmapImage;
@@ -127,7 +126,6 @@ namespace Paint1
           
             Rectangle r = new Rectangle(0, 0, bitmapImage.Width-1, bitmapImage.Height-1 );
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            Brush.BitmapImage = btm;
             
         }
 
@@ -166,7 +164,6 @@ namespace Paint1
             {
                 bitmapImage = memoryBitmap;
             }
-            Brush.BitmapImage = bitmapImage;
             Brush.BrushColor = colorDialog.Color;
         }
 
@@ -177,7 +174,6 @@ namespace Paint1
             {
                 colorBt.BackColor = colorDialog.Color;
                 Brush.BrushColor = colorDialog.Color;
-                Color FillColor = colorDialog.Color;
             }
         }
 
@@ -415,7 +411,6 @@ namespace Paint1
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             memoryBitmap = bitmapImage;
             canvas.Image = bitmapImage;
-            Brush.BitmapImage = bitmapImage;
             Brush.BrushColor = lastColorBrush;
             Brush.BrushThickness = lastThicknessBrush;
         }    

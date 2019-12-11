@@ -12,7 +12,7 @@ namespace Paint1
         private IFigure figure;
         private IFill stateFill;
         private bool checkFill;
-        private Color brush;
+        private Color FillColor;
         private Bitmap bitmap;
         private int x, y;
 
@@ -29,9 +29,9 @@ namespace Paint1
         }
 
 
-        public void SetModify(Color brush, bool autoFill, Bitmap bitmap, int x, int y)
+        public void SetModify(Color FillColor, bool autoFill, Bitmap bitmap, int x, int y)
         {
-            this.brush = brush;
+            this.FillColor = FillColor;
             checkFill = autoFill;
             this.bitmap = bitmap;
             this.x = x;
@@ -54,7 +54,7 @@ namespace Paint1
                 {
                     if ((startY < y && y < endY) || (endY < y && y < startY ))
                     {
-                        Fill(x, y, brush);
+                        Fill(x, y, FillColor);
                     }
 
                 }
@@ -65,12 +65,13 @@ namespace Paint1
         }
 
 
-        public void Fill(int x, int y, Color brush) {
+        public void Fill(int x, int y, Color FillColor) 
+        {
             stateFill = new FillSolid(bitmap);
             //Rectangle r = new Rectangle(0, 0, bitmap.Width - 1, bitmap.Height - 1);
             //Bitmap btm = bitmap.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
             //bitmap = btm;
-            stateFill.Fill(this.x, this.y, brush);   
+            stateFill.Fill(this.x, this.y, FillColor);   
         }
       
 

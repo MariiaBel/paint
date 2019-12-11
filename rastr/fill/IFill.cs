@@ -9,7 +9,7 @@ namespace Paint1
 {
     interface IFill 
     {
-        void Fill(int x, int y, Color brush);
+        void Fill(int x, int y, Color FillColor);
         
         Bitmap ReturnBit();
     }

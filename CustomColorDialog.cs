@@ -13,34 +13,50 @@ namespace Paint1
     public partial class CustomColorDialog : Form
     {
         public Color Color = Color.Black;
+        public Color fillColor = Color.Black;
         public CustomColorDialog()
         {
             InitializeComponent();
         }
 
-        private void btnRed_Click(object sender, EventArgs e)
+        private void btnRed_MouseDown(object sender, MouseEventArgs e)
         {
-            Color = Color.Red;
+            if (e.Button == MouseButtons.Right)
+            { fillColor = Color.Red; }
+            else if (e.Button == MouseButtons.Left)
+            { Color = Color.Red; }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnDarkCyan_MouseDown(object sender, MouseEventArgs e)
         {
-            Color = Color.Green;
+            if (e.Button == MouseButtons.Right)
+            { fillColor = Color.DarkCyan; }
+            else if (e.Button == MouseButtons.Left)
+            { Color = Color.DarkCyan; }
         }
 
-        private void btnPurple_Click(object sender, EventArgs e)
+        private void btnPurple_MouseDown(object sender, MouseEventArgs e)
         {
-            Color = Color.Purple;
+            if (e.Button == MouseButtons.Right)
+            { fillColor = Color.Purple; }
+            else if (e.Button == MouseButtons.Left)
+            { Color = Color.Purple; }
         }
 
-        private void btnRoyalBlue_Click(object sender, EventArgs e)
+        private void btnRoyalBlue_MouseDown(object sender, MouseEventArgs e)
         {
-            Color = Color.RoyalBlue;
+            if (e.Button == MouseButtons.Right)
+            { fillColor = Color.RoyalBlue; }
+            else if (e.Button == MouseButtons.Left)
+            { Color = Color.RoyalBlue; }
         }
 
-        private void btnBlack_Click(object sender, EventArgs e)
+        private void btnBlack_MouseDown(object sender, MouseEventArgs e)
         {
-            Color = Color.Black;
+            if (e.Button == MouseButtons.Right)
+            { fillColor = Color.Black; }
+            else if (e.Button == MouseButtons.Left)
+            { Color = Color.Black; }
         }
     }
 }

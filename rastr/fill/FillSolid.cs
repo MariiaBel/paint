@@ -25,7 +25,7 @@ namespace Paint1
             return this.bitmap;
         }
 
-        public void Fill(int x, int y, Color brush)
+        public void Fill(int x, int y, Color fillColor)
         {
             Color temp = bitmap.GetPixel(x, y);
 
@@ -44,25 +44,21 @@ namespace Paint1
 
             for (int i = countLeft; i <= countRight; i++)
             {
-                bitmap.SetPixel(i, y, brush);
+                bitmap.SetPixel(i, y, fillColor);
             }
 
             for (int i = countLeft; i <= countRight; i++)
             {
                 if (bitmap.GetPixel(i, y - 1) == temp && y - 1 > 0)
                 {
-                    Fill(i, y - 1, brush);
+                    Fill(i, y - 1, fillColor);
                 }
 
                 if (bitmap.GetPixel(i, y + 1) == temp && y + 1 < bitmap.Height - 1)
                 {
-                    Fill(i, y + 1, brush);
+                    Fill(i, y + 1, fillColor);
                 }
             }
         }
-
-        
-        
     }
- 
 }

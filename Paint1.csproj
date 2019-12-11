@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FigureAngles.cs" />
     <Compile Include="rastr\Brush.cs" />
     <Compile Include="rastr\BuildFigure.cs" />
     <Compile Include="rastr\figures\FigureByPoint.cs" />
+    <Compile Include="rastr\figures\Fpolygon.cs" />
     <Compile Include="rastr\IFigureBuild.cs" />
     <Compile Include="rastr\figures\Polygon.cs" />
     <Compile Include="rastr\figures\Triangle.cs" />

@@ -71,7 +71,10 @@ namespace Paint1
                             break;
                         case "triangle":
                             DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
-                            break; 
+                            break;
+                        case "fpolygon":
+                            DrawFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y);
+                            break;
                     }           
                 }
                 else
@@ -230,7 +233,7 @@ namespace Paint1
         private void figurePolygon_Click(object sender, EventArgs e)
         {
             
-            contur = new Polygon();
+            contur = new Fpolygon();
             flagFigure = "fpolygon";
             ButtonChange(figurePolygon);
         }
@@ -328,6 +331,11 @@ namespace Paint1
         private void change_figure_Click(object sender, EventArgs e)
         {
             change = false;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            FigureAngles.SetAngles(Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

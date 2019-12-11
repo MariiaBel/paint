@@ -341,6 +341,40 @@ namespace Paint1
             FigureAngles.SetAngles(Convert.ToInt32(numericUpDown1.Value));
         }
 
+        private void Save_Click(object sender, EventArgs e)
+        {
+            string FileName = @"C:\Users\User\Desktop\Test.jpg";
+            bitmapImage.Save(FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+
+        private void SaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                bitmapImage.Save(saveFileDialog1.OpenFile(), System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
+        private void load_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                openFileDialog1.Reset();
+                bitmapImage = new Bitmap(openFileDialog1.OpenFile());
+                canvas.Image = bitmapImage;
+            }
+        }
+
+        private void Load_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void VectorTools_Click_1(object sender, EventArgs e)
         {
             vector.Visible = true;

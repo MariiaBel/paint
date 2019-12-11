@@ -24,7 +24,8 @@ namespace Paint1
         Pen p;
         Bitmap bitmapVector;
         Holst holst;
-        VectorLine model;
+        IFigure_vector model;
+        IBuild build;
         Point pointToChange;
         bool flag = false, change = true;
         string changeFigure;
@@ -47,7 +48,6 @@ namespace Paint1
             bitmapVector = new Bitmap(canvas.Width, canvas.Height);
             VectorGraph = Graphics.FromImage(bitmapVector);
             holst = new Holst();
-
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -258,18 +258,18 @@ namespace Paint1
             flag = true;
             if (change)
             {
-                model = new VectorLine(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
-                holst.figures.Add(model);
+                model.Initial(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
+                holst.Add(model);
 
             }
             else
             {
-                model = holst.FindPoint(new Point(e.X, e.Y));
+                model = holst.Interaction(new Point(e.X, e.Y));
                 if (model != null)
                 {
-                    for (int i = 0; i < model.points.Count; i++)
+                    for (int i = 0; i < model.GetCountPoint(); i++)
                     {
-                        if (model.points[i] == e.Location)
+                        if (model.GetPoint(i) == e.Location)
                         {
                             Tochka = i;
                         }
@@ -288,6 +288,7 @@ namespace Paint1
         private void line_Click(object sender, EventArgs e)
         {
             changeFigure = "line";
+            model = new VectorLine();
             change = true;
         }
 
@@ -303,7 +304,7 @@ namespace Paint1
                             bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                             model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
                             Painter.DrawFigure(model, bitmapVector);
-                            holst.figures.Add(model);
+                            holst.Add(model);
                             canvas_vector.Image = holst.Update(bitmapVector);
                             break;
                     }
@@ -316,11 +317,11 @@ namespace Paint1
                 {
                     if (model != null)
                     {
-                        model.points[Tochka] = e.Location;
+                        model.ChangePoint(e.Location, Tochka);
                         bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                         pointToChange = e.Location;
                         Painter.DrawFigure(model, bitmapVector);
-                        holst.figures.Add(model);
+                        holst.Add(model);
                         canvas_vector.Image = holst.Update(bitmapVector);
                     }
                 }
@@ -331,6 +332,7 @@ namespace Paint1
         private void change_figure_Click(object sender, EventArgs e)
         {
             change = false;
+            holst.build = new Change();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)

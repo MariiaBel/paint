@@ -114,7 +114,7 @@ namespace Paint1
             RastrGraph = Graphics.FromImage(memoryBitmap);
             Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
             figure = new Build(contur, typeFill);
-            figure.SetModify(Color.Red, autoFill, bitmap, x, y);
+            figure.SetModify(colorDialog.fillColor, autoFill, bitmap, x, y);
             figure.BuildFigure(x1, y1, x2, y2, shift);
 
             RastrGraph.DrawImage(figure.ReturnBit(), 0, 0);
@@ -176,6 +176,7 @@ namespace Paint1
             {
                 colorBt.BackColor = colorDialog.Color;
                 Brush.BrushColor = colorDialog.Color;
+                Color FillColor = colorDialog.Color;
             }
         }
 

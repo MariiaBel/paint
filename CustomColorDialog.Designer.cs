@@ -47,7 +47,8 @@
             this.btnRed.Size = new System.Drawing.Size(40, 40);
             this.btnRed.TabIndex = 0;
             this.btnRed.UseVisualStyleBackColor = false;
-            this.btnRed.Click += new System.EventHandler(this.btnRed_Click);
+           
+            this.btnRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRed_MouseDown);
             // 
             // btnOK
             // 
@@ -81,7 +82,8 @@
             this.btnDarkCyan.Size = new System.Drawing.Size(40, 40);
             this.btnDarkCyan.TabIndex = 3;
             this.btnDarkCyan.UseVisualStyleBackColor = false;
-            this.btnDarkCyan.Click += new System.EventHandler(this.button3_Click);
+      
+            this.btnDarkCyan.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnDarkCyan_MouseDown);
             // 
             // btnPurple
             // 
@@ -92,7 +94,8 @@
             this.btnPurple.Size = new System.Drawing.Size(40, 40);
             this.btnPurple.TabIndex = 4;
             this.btnPurple.UseVisualStyleBackColor = false;
-            this.btnPurple.Click += new System.EventHandler(this.btnPurple_Click);
+       
+            this.btnPurple.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPurple_MouseDown);
             // 
             // btnRoyalBlue
             // 
@@ -103,7 +106,8 @@
             this.btnRoyalBlue.Size = new System.Drawing.Size(40, 40);
             this.btnRoyalBlue.TabIndex = 5;
             this.btnRoyalBlue.UseVisualStyleBackColor = false;
-            this.btnRoyalBlue.Click += new System.EventHandler(this.btnRoyalBlue_Click);
+  
+            this.btnRoyalBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRoyalBlue_MouseDown);
             // 
             // btnBlack
             // 
@@ -114,7 +118,7 @@
             this.btnBlack.Size = new System.Drawing.Size(40, 40);
             this.btnBlack.TabIndex = 6;
             this.btnBlack.UseVisualStyleBackColor = false;
-            this.btnBlack.Click += new System.EventHandler(this.btnBlack_Click);
+            this.btnBlack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBlack_MouseDown);
             // 
             // CustomColorDialog
             // 

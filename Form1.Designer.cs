@@ -46,13 +46,37 @@
             this.canvas = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.векторнаяГрафикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VectorTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.RastrTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.rastr = new System.Windows.Forms.Panel();
+            this.vector = new System.Windows.Forms.Panel();
+            this.canvas_vector = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.change_figure = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button8 = new System.Windows.Forms.Button();
+            this.line = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBrush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.rastr.SuspendLayout();
+            this.vector.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.canvas_vector)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
@@ -62,9 +86,9 @@
             this.panel.Controls.Add(this.panel1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel.Location = new System.Drawing.Point(0, 24);
+            this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1488, 73);
+            this.panel.Size = new System.Drawing.Size(784, 73);
             this.panel.TabIndex = 0;
             // 
             // checkFill
@@ -257,11 +281,10 @@
             // canvas
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.ErrorImage = null;
-            this.canvas.Location = new System.Drawing.Point(0, 97);
+            this.canvas.Location = new System.Drawing.Point(0, 73);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(1488, 801);
+            this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             this.canvas.SizeChanged += new System.EventHandler(this.canvas_SizeChanged);
@@ -276,33 +299,240 @@
             this.менюToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1488, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1576, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // менюToolStripMenuItem
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.векторнаяГрафикаToolStripMenuItem});
+            this.VectorTools,
+            this.RastrTools});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
-            // векторнаяГрафикаToolStripMenuItem
+            // VectorTools
             // 
-            this.векторнаяГрафикаToolStripMenuItem.Name = "векторнаяГрафикаToolStripMenuItem";
-            this.векторнаяГрафикаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.векторнаяГрафикаToolStripMenuItem.Text = "Векторная графика";
-            this.векторнаяГрафикаToolStripMenuItem.Click += new System.EventHandler(this.векторнаяГрафикаToolStripMenuItem_Click);
+            this.VectorTools.Name = "VectorTools";
+            this.VectorTools.Size = new System.Drawing.Size(180, 22);
+            this.VectorTools.Text = "Векторная графика";
+            this.VectorTools.Click += new System.EventHandler(this.VectorTools_Click_1);
+            // 
+            // RastrTools
+            // 
+            this.RastrTools.Name = "RastrTools";
+            this.RastrTools.Size = new System.Drawing.Size(180, 22);
+            this.RastrTools.Text = "Растровая графика";
+            this.RastrTools.Click += new System.EventHandler(this.RastrTools_Click_1);
+            // 
+            // rastr
+            // 
+            this.rastr.Controls.Add(this.panel);
+            this.rastr.Controls.Add(this.canvas);
+            this.rastr.Location = new System.Drawing.Point(12, 27);
+            this.rastr.Name = "rastr";
+            this.rastr.Size = new System.Drawing.Size(784, 720);
+            this.rastr.TabIndex = 2;
+            // 
+            // vector
+            // 
+            this.vector.Controls.Add(this.canvas_vector);
+            this.vector.Controls.Add(this.panel3);
+            this.vector.Location = new System.Drawing.Point(803, 28);
+            this.vector.Name = "vector";
+            this.vector.Size = new System.Drawing.Size(773, 720);
+            this.vector.TabIndex = 3;
+            // 
+            // canvas_vector
+            // 
+            this.canvas_vector.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.canvas_vector.ErrorImage = null;
+            this.canvas_vector.Location = new System.Drawing.Point(0, 73);
+            this.canvas_vector.Name = "canvas_vector";
+            this.canvas_vector.Size = new System.Drawing.Size(773, 647);
+            this.canvas_vector.TabIndex = 4;
+            this.canvas_vector.TabStop = false;
+            this.canvas_vector.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_vector_MouseDown);
+            this.canvas_vector.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_vector_MouseMove);
+            this.canvas_vector.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_vector_MouseUp);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.change_figure);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(773, 73);
+            this.panel3.TabIndex = 3;
+            // 
+            // change_figure
+            // 
+            this.change_figure.Location = new System.Drawing.Point(336, 29);
+            this.change_figure.Name = "change_figure";
+            this.change_figure.Size = new System.Drawing.Size(84, 37);
+            this.change_figure.TabIndex = 8;
+            this.change_figure.Text = "change";
+            this.change_figure.UseVisualStyleBackColor = true;
+            this.change_figure.Click += new System.EventHandler(this.change_figure_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.button4);
+            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.button6);
+            this.panel4.Location = new System.Drawing.Point(208, 13);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(121, 54);
+            this.panel4.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(95, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(17, 17);
+            this.button1.TabIndex = 8;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(72, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(17, 17);
+            this.button3.TabIndex = 7;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(49, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(17, 17);
+            this.button4.TabIndex = 6;
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(3, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(17, 17);
+            this.button5.TabIndex = 3;
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.White;
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(26, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(17, 17);
+            this.button6.TabIndex = 5;
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.button7);
+            this.panel5.Controls.Add(this.trackBar1);
+            this.panel5.Controls.Add(this.button8);
+            this.panel5.Controls.Add(this.line);
+            this.panel5.Location = new System.Drawing.Point(12, 12);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(177, 55);
+            this.panel5.TabIndex = 6;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Black;
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.Location = new System.Drawing.Point(25, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(17, 17);
+            this.button7.TabIndex = 1;
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.trackBar1.Location = new System.Drawing.Point(48, 3);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(126, 37);
+            this.trackBar1.TabIndex = 2;
+            // 
+            // button8
+            // 
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Location = new System.Drawing.Point(3, 26);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(17, 17);
+            this.button8.TabIndex = 1;
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // line
+            // 
+            this.line.BackColor = System.Drawing.Color.White;
+            this.line.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("line.BackgroundImage")));
+            this.line.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.line.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.line.FlatAppearance.BorderSize = 0;
+            this.line.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.line.Location = new System.Drawing.Point(3, 3);
+            this.line.Name = "line";
+            this.line.Size = new System.Drawing.Size(17, 17);
+            this.line.TabIndex = 4;
+            this.line.UseVisualStyleBackColor = false;
+            this.line.Click += new System.EventHandler(this.line_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1488, 898);
-            this.Controls.Add(this.canvas);
-            this.Controls.Add(this.panel);
+            this.ClientSize = new System.Drawing.Size(1576, 759);
+            this.Controls.Add(this.vector);
+            this.Controls.Add(this.rastr);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.KeyPreview = true;
@@ -321,6 +551,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.rastr.ResumeLayout(false);
+            this.vector.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.canvas_vector)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,7 +581,25 @@
         private System.Windows.Forms.CheckBox checkFill;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem векторнаяГрафикаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VectorTools;
+        private System.Windows.Forms.Panel rastr;
+        private System.Windows.Forms.Panel vector;
+        private System.Windows.Forms.Panel panel3;
+       
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button7;
+        public System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button line;
+        public System.Windows.Forms.PictureBox canvas_vector;
+        private System.Windows.Forms.ToolStripMenuItem RastrTools;
+        private System.Windows.Forms.Button change_figure;
     }
 }
 

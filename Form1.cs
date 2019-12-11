@@ -7,6 +7,7 @@ namespace Paint1
 {
     public partial class Form1 : Form
     {
+        //Растровая графика
         IFill typeFill = null;
         IFigure contur = new Line();
         IFigureBuild figure = new Build(new Line(), new FillSolid());
@@ -15,21 +16,38 @@ namespace Paint1
         bool mouseDown = false, shift = false, autoFill = false;
         int firstPointX, firstPointY, prevPointX = -1, prevPointY = -1, memoryFirstPointX, memoryFirstPointY;
         CustomColorDialog colorDialog = new CustomColorDialog();
-
         Graphics RastrGraph;
-
         Button button = null;
+
+        //Векторная графика
+        Graphics VectorGraph;
+        Pen p;
+        Bitmap bitmapVector;
+        Holst holst;
+        VectorLine model;
+        Point pointToChange;
+        bool flag = false, change = true;
+        string changeFigure;
+        int Tochka;
 
         public Form1()
         {
             InitializeComponent();
+            vector.Visible = false;
+            vector.Location = new Point(12, 17);
+            this.Height = 720;
+            this.Width = 784;
+            RastrTools.Visible = false;
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
-            
-            
+            bitmapVector = new Bitmap(canvas.Width, canvas.Height);
+            VectorGraph = Graphics.FromImage(bitmapVector);
+            holst = new Holst();
+
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -224,11 +242,100 @@ namespace Paint1
             ButtonChange(fill);
         }
 
-        private void векторнаяГрафикаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RastrTools_Click_1(object sender, EventArgs e)
         {
-            Vector vector = new Vector();
-            vector.Show();
-            this.Hide();
+            vector.Visible = false;
+            rastr.Visible = true;
+            VectorTools.Visible = true;
+            RastrTools.Visible = false;
+        }
+
+        private void canvas_vector_MouseDown(object sender, MouseEventArgs e)
+        {
+            flag = true;
+            if (change)
+            {
+                model = new VectorLine(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
+                holst.figures.Add(model);
+
+            }
+            else
+            {
+                model = holst.FindPoint(new Point(e.X, e.Y));
+                if (model != null)
+                {
+                    for (int i = 0; i < model.points.Count; i++)
+                    {
+                        if (model.points[i] == e.Location)
+                        {
+                            Tochka = i;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        private void canvas_vector_MouseUp(object sender, MouseEventArgs e)
+        {
+            flag = false;
+        }
+
+        private void line_Click(object sender, EventArgs e)
+        {
+            changeFigure = "line";
+            change = true;
+        }
+
+        private void canvas_vector_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (change)
+            {
+                if (flag)
+                {
+                    switch (changeFigure)
+                    {
+                        case "line":
+                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
+                            Painter.DrawFigure(model, bitmapVector);
+                            holst.figures.Add(model);
+                            canvas_vector.Image = holst.Update(bitmapVector);
+                            break;
+                    }
+                }
+
+            }
+            else
+            {
+                if (flag)
+                {
+                    if (model != null)
+                    {
+                        model.points[Tochka] = e.Location;
+                        bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                        pointToChange = e.Location;
+                        Painter.DrawFigure(model, bitmapVector);
+                        holst.figures.Add(model);
+                        canvas_vector.Image = holst.Update(bitmapVector);
+                    }
+                }
+
+            }
+        }
+
+        private void change_figure_Click(object sender, EventArgs e)
+        {
+            change = false;
+        }
+
+        private void VectorTools_Click_1(object sender, EventArgs e)
+        {
+            vector.Visible = true;
+            rastr.Visible = false;
+            RastrTools.Visible = true;
+            VectorTools.Visible = false;
         }
 
         private void checkFill_CheckedChanged(object sender, EventArgs e)

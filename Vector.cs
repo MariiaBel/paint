@@ -33,7 +33,7 @@ namespace Paint1
             VectorGraph = Graphics.FromImage(bitmapVector);
             holst = new Holst();
         }
-
+        
         private void растроваяГрафикаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 rastr = new Form1();

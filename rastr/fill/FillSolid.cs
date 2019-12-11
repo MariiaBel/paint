@@ -10,51 +10,39 @@ namespace Paint1
     public class FillSolid : IFill
     {
 
-        public Bitmap bitmap;
 
-        public FillSolid(Bitmap bitmap)
-        {
-            this.bitmap = bitmap;
-        }
-        public FillSolid()
-        {
-        }
-
-        public Bitmap ReturnBit()
-        {
-            return this.bitmap;
-        }
+        public Bitmap MyBitmap { get; set;}
 
         public void Fill(int x, int y, Color fillColor)
         {
-            Color temp = bitmap.GetPixel(x, y);
+            Color temp = MyBitmap.GetPixel(x, y);
 
             int countLeft = x;
             int countRight = x;
 
-            while (countLeft - 1 > 0 && bitmap.GetPixel(countLeft - 1, y) == temp)
+            while (countLeft - 1 > 0 && MyBitmap.GetPixel(countLeft - 1, y) == temp)
             {
                 countLeft--;
             }
 
-            while (countRight + 1 < bitmap.Width && bitmap.GetPixel(countRight + 1, y) == temp)
+            while (countRight + 1 < MyBitmap.Width && MyBitmap.GetPixel(countRight + 1, y) == temp)
             {
                 countRight++;
             }
 
             for (int i = countLeft; i <= countRight; i++)
             {
-                bitmap.SetPixel(i, y, fillColor);
+                MyBitmap.SetPixel(i, y, fillColor);
             }
 
             for (int i = countLeft; i <= countRight; i++)
             {
-                if (bitmap.GetPixel(i, y - 1) == temp && y - 1 > 0)
+                if (MyBitmap.GetPixel(i, y - 1) == temp && y - 1 > 0)
                 {
                     Fill(i, y - 1, fillColor);
                 }
 
-                if (bitmap.GetPixel(i, y + 1) == temp && y + 1 < bitmap.Height - 1)
+                if (MyBitmap.GetPixel(i, y + 1) == temp && y + 1 < MyBitmap.Height - 1)
                 {
                     Fill(i, y + 1, fillColor);
                 }

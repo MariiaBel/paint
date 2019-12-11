@@ -88,7 +88,8 @@ namespace Paint1
         {
             Brush.BitmapImage = bitmapImage;
             figure = new Build(contur, typeFill);
-            figure.SetBit(bitmapImage);
+            
+            figure.MyBitmap = bitmapImage;
             figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
@@ -105,8 +106,7 @@ namespace Paint1
 
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
-        {
-            
+        {        
             int x = (x1 + x2) / 2;
             int y = (y1 + y2) / 2;
             CloneBitmap(out memoryBitmap);
@@ -114,12 +114,12 @@ namespace Paint1
             RastrGraph = Graphics.FromImage(memoryBitmap);
             Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
             figure = new Build(contur, typeFill);
-            figure.SetModify(colorDialog.fillColor, autoFill, bitmap, x, y);
+            figure.MyBitmap = bitmap;
+            figure.SetModify(colorDialog.fillColor, autoFill, x, y);
             figure.BuildFigure(x1, y1, x2, y2, shift);
 
-            RastrGraph.DrawImage(figure.ReturnBit(), 0, 0);
-            canvas.Image = memoryBitmap; 
-            
+            RastrGraph.DrawImage(figure.MyBitmap, 0, 0);
+            canvas.Image = memoryBitmap;  
         }
 
         private void CloneBitmap(out Bitmap btm)
@@ -153,9 +153,10 @@ namespace Paint1
 
         private void FillCanvas(MouseEventArgs e)
         {
-            IFill typeFill = new FillSolid(bitmapImage);
+            IFill typeFill = new FillSolid();
+            typeFill.MyBitmap = bitmapImage;
             typeFill.Fill(e.X, e.Y, Brush.BrushColor);
-            canvas.Image = typeFill.ReturnBit();
+            canvas.Image = typeFill.MyBitmap;
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
@@ -184,9 +185,8 @@ namespace Paint1
         {
             if (flagFigure == "ppolygon")
             {
-                figure.BuildFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY, shift);
-                bitmapImage = memoryBitmap;
-                canvas.Image = bitmapImage;
+                DrawFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY);
+
                 prevPointX = -1;
                 prevPointY = -1;
             }
@@ -210,27 +210,7 @@ namespace Paint1
             Brush.BrushThickness = trackBrush.Value + 1;
         }
 
-        private void trackBrush_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_SizeChanged(object sender, EventArgs e )
-        {
-           
-        }
-        private void figureSquare_BackColorChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void canvas_SizeChanged(object sender, EventArgs e)
-        {
-            //Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
-            //Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
-            //btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            //bitmapImage = btm;
-            //canvas.Image = bitmapImage;
-        }
+      
         private void figurePolygon_Click(object sender, EventArgs e)
         {
             
@@ -276,8 +256,6 @@ namespace Paint1
                         }
                     }
                 }
-
-
             }
         }
 

@@ -204,7 +204,6 @@
             this.figureSquare.Size = new System.Drawing.Size(17, 17);
             this.figureSquare.TabIndex = 3;
             this.figureSquare.UseVisualStyleBackColor = false;
-            this.figureSquare.BackColorChanged += new System.EventHandler(this.figureSquare_BackColorChanged);
             this.figureSquare.Click += new System.EventHandler(this.figureSquare_Click);
             // 
             // pointPolygon
@@ -273,7 +272,6 @@
             this.trackBrush.Name = "trackBrush";
             this.trackBrush.Size = new System.Drawing.Size(126, 37);
             this.trackBrush.TabIndex = 2;
-            this.trackBrush.Scroll += new System.EventHandler(this.trackBrush_Scroll);
             this.trackBrush.ValueChanged += new System.EventHandler(this.trackBrush_ValueChanged);
             // 
             // cleanBt
@@ -314,7 +312,7 @@
             this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
-            this.canvas.SizeChanged += new System.EventHandler(this.canvas_SizeChanged);
+     
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
@@ -596,7 +594,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.AutoSizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);

@@ -11,6 +11,6 @@ namespace Paint1
     {
         void Fill(int x, int y, Color FillColor);
         
-        Bitmap ReturnBit();
+        Bitmap MyBitmap { get; set; }
     }
 }

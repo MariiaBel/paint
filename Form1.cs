@@ -233,6 +233,12 @@ namespace Paint1
             flag = true;
             if (change)
             {
+                switch (changeFigure)
+                {
+                    case "line":
+                        model = new VectorLine();
+                        break;
+                }
                 model.Initial(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
                 holst.Add(model);
 
@@ -261,7 +267,7 @@ namespace Paint1
         private void line_Click(object sender, EventArgs e)
         {
             changeFigure = "line";
-            model = new VectorLine();
+           
             change = true;
         }
 
@@ -276,8 +282,7 @@ namespace Paint1
                         case "line":
                             bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                             model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
-                            Painter.DrawFigure(model, bitmapVector);
-                            holst.Add(model);
+                          
                             canvas_vector.Image = holst.Update(bitmapVector);
                             break;
                     }

@@ -347,6 +347,11 @@ namespace Paint1
 
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void VectorTools_Click_1(object sender, EventArgs e)
         {
             vector.Visible = true;

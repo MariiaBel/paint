@@ -245,17 +245,19 @@ namespace Paint1
             }
             else
             {
-                model = holst.Interaction(new Point(e.X, e.Y));
+                int size = 7;
+                model = holst.Interaction(e.Location);
                 if (model != null)
                 {
                     for (int i = 0; i < model.GetCountPoint(); i++)
                     {
-                        if (model.GetPoint(i) == e.Location)
+                        if (Math.Abs(model.GetPoint(i).X - e.Location.X) <= size)
                         {
                             Tochka = i;
                         }
                     }
                 }
+
             }
         }
 
@@ -267,7 +269,6 @@ namespace Paint1
         private void line_Click(object sender, EventArgs e)
         {
             changeFigure = "line";
-           
             change = true;
         }
 
@@ -277,15 +278,12 @@ namespace Paint1
             {
                 if (flag)
                 {
-                    switch (changeFigure)
-                    {
-                        case "line":
-                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
-                          
-                            canvas_vector.Image = holst.Update(bitmapVector);
-                            break;
-                    }
+                    
+                    bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                    model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
+                    canvas_vector.Image = holst.Update(bitmapVector);
+                        
+                    
                 }
 
             }

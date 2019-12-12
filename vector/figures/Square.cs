@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Paint1
 {
-    class Square_vector
+    class Square_vector 
     {
+       
     }
 }

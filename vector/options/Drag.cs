@@ -7,8 +7,8 @@ using System.Drawing;
 
 namespace Paint1
 {
-    class Drag
+    class Drag 
     {
-       
+        
     }
 }

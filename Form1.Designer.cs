@@ -49,6 +49,9 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VectorTools = new System.Windows.Forms.ToolStripMenuItem();
             this.RastrTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.rastr = new System.Windows.Forms.Panel();
             this.vector = new System.Windows.Forms.Panel();
             this.canvas_vector = new System.Windows.Forms.PictureBox();
@@ -65,9 +68,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button8 = new System.Windows.Forms.Button();
             this.line = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel.SuspendLayout();
@@ -312,7 +312,6 @@
             this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
-     
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
@@ -356,6 +355,27 @@
             this.RastrTools.Text = "Растровая графика";
             this.RastrTools.Click += new System.EventHandler(this.RastrTools_Click_1);
             // 
+            // Save
+            // 
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(180, 22);
+            this.Save.Text = "Сохранить";
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // SaveAs
+            // 
+            this.SaveAs.Name = "SaveAs";
+            this.SaveAs.Size = new System.Drawing.Size(180, 22);
+            this.SaveAs.Text = "Сохранить как";
+            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
+            // 
+            // load
+            // 
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(180, 22);
+            this.load.Text = "Загрузить";
+            this.load.Click += new System.EventHandler(this.load_Click);
+            // 
             // rastr
             // 
             this.rastr.Controls.Add(this.panel);
@@ -377,6 +397,7 @@
             // canvas_vector
             // 
             this.canvas_vector.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.canvas_vector.Cursor = System.Windows.Forms.Cursors.Default;
             this.canvas_vector.ErrorImage = null;
             this.canvas_vector.Location = new System.Drawing.Point(0, 73);
             this.canvas_vector.Name = "canvas_vector";
@@ -555,27 +576,6 @@
             this.line.UseVisualStyleBackColor = false;
             this.line.Click += new System.EventHandler(this.line_Click);
             // 
-            // Save
-            // 
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(180, 22);
-            this.Save.Text = "Сохранить";
-            this.Save.Click += new System.EventHandler(this.Save_Click);
-            // 
-            // SaveAs
-            // 
-            this.SaveAs.Name = "SaveAs";
-            this.SaveAs.Size = new System.Drawing.Size(180, 22);
-            this.SaveAs.Text = "Сохранить как";
-            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
-            // 
-            // load
-            // 
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(180, 22);
-            this.load.Text = "Загрузить";
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -584,7 +584,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1443, 759);
             this.Controls.Add(this.vector);
             this.Controls.Add(this.rastr);

@@ -49,6 +49,9 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VectorTools = new System.Windows.Forms.ToolStripMenuItem();
             this.RastrTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.rastr = new System.Windows.Forms.Panel();
             this.vector = new System.Windows.Forms.Panel();
             this.canvas_vector = new System.Windows.Forms.PictureBox();
@@ -56,7 +59,7 @@
             this.change_figure = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.triangleVectorBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -65,9 +68,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button8 = new System.Windows.Forms.Button();
             this.line = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel.SuspendLayout();
@@ -312,7 +312,6 @@
             this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
-     
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
@@ -355,6 +354,27 @@
             this.RastrTools.Size = new System.Drawing.Size(180, 22);
             this.RastrTools.Text = "Растровая графика";
             this.RastrTools.Click += new System.EventHandler(this.RastrTools_Click_1);
+            // 
+            // Save
+            // 
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(180, 22);
+            this.Save.Text = "Сохранить";
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // SaveAs
+            // 
+            this.SaveAs.Name = "SaveAs";
+            this.SaveAs.Size = new System.Drawing.Size(180, 22);
+            this.SaveAs.Text = "Сохранить как";
+            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
+            // 
+            // load
+            // 
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(180, 22);
+            this.load.Text = "Загрузить";
+            this.load.Click += new System.EventHandler(this.load_Click);
             // 
             // rastr
             // 
@@ -414,7 +434,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.button1);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.triangleVectorBtn);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.button6);
@@ -437,19 +457,20 @@
             this.button1.TabIndex = 8;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // triangleVectorBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(72, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(17, 17);
-            this.button3.TabIndex = 7;
-            this.button3.UseVisualStyleBackColor = false;
+            this.triangleVectorBtn.BackColor = System.Drawing.Color.White;
+            this.triangleVectorBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("triangleVectorBtn.BackgroundImage")));
+            this.triangleVectorBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.triangleVectorBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.triangleVectorBtn.FlatAppearance.BorderSize = 0;
+            this.triangleVectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.triangleVectorBtn.Location = new System.Drawing.Point(72, 3);
+            this.triangleVectorBtn.Name = "triangleVectorBtn";
+            this.triangleVectorBtn.Size = new System.Drawing.Size(17, 17);
+            this.triangleVectorBtn.TabIndex = 7;
+            this.triangleVectorBtn.UseVisualStyleBackColor = false;
+            this.triangleVectorBtn.Click += new System.EventHandler(this.triangleVectorBtn_Click);
             // 
             // button4
             // 
@@ -555,27 +576,6 @@
             this.line.UseVisualStyleBackColor = false;
             this.line.Click += new System.EventHandler(this.line_Click);
             // 
-            // Save
-            // 
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(180, 22);
-            this.Save.Text = "Сохранить";
-            this.Save.Click += new System.EventHandler(this.Save_Click);
-            // 
-            // SaveAs
-            // 
-            this.SaveAs.Name = "SaveAs";
-            this.SaveAs.Size = new System.Drawing.Size(180, 22);
-            this.SaveAs.Text = "Сохранить как";
-            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
-            // 
-            // load
-            // 
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(180, 22);
-            this.load.Text = "Загрузить";
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -643,7 +643,7 @@
        
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button triangleVectorBtn;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;

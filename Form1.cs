@@ -238,6 +238,9 @@ namespace Paint1
                     case "line":
                         model = new VectorLine();
                         break;
+                    case "triangle":
+                        model = new Triangle_vector();
+                        break;
                 }
                 model.Initial(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
                 holst.Add(model);
@@ -283,6 +286,12 @@ namespace Paint1
                             bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                             model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
                           
+                            canvas_vector.Image = holst.Update(bitmapVector);
+                            break;
+                        case "triangle":
+                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
+
                             canvas_vector.Image = holst.Update(bitmapVector);
                             break;
                     }
@@ -350,6 +359,12 @@ namespace Paint1
         private void Load_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void triangleVectorBtn_Click(object sender, EventArgs e)
+        {
+            changeFigure = "triangle";
+            change = true;
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

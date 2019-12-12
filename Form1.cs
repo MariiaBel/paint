@@ -30,12 +30,12 @@ namespace Paint1
         bool flag = false, change = true;
         string changeFigure;
         int Tochka;
-
+        Color LineColor;
         public Form1()
         {
             InitializeComponent();
             vector.Visible = false;
-            vector.Location = new Point(12, 17);
+            vector.Location = new Point(12, 27);
             this.Height = 720;
             this.Width = 784;
             RastrTools.Visible = false;
@@ -239,7 +239,7 @@ namespace Paint1
                         model = new VectorLine();
                         break;
                 }
-                model.Initial(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
+                model.Initial(new Point(e.X, e.Y), LineColor, trackBar1.Value);
                 holst.Add(model);
 
             }
@@ -348,6 +348,16 @@ namespace Paint1
         private void Load_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = colorDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                button7.BackColor = colorDialog.Color;
+                LineColor = colorDialog.Color;
+            }
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

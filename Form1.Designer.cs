@@ -538,6 +538,7 @@
             this.button7.Size = new System.Drawing.Size(17, 17);
             this.button7.TabIndex = 1;
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // trackBar1
             // 
@@ -647,7 +648,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button7;
         public System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button line;
@@ -660,6 +660,7 @@
         private System.Windows.Forms.ToolStripMenuItem load;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button7;
     }
 }
 

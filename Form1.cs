@@ -106,15 +106,13 @@ namespace Paint1
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
         {        
-            int x = (x1 + x2) / 2;
-            int y = (y1 + y2) / 2;
             CloneBitmap(out memoryBitmap);
             
             RastrGraph = Graphics.FromImage(memoryBitmap);
             Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
             figure = new Build(contur, typeFill);
             figure.MyBitmap = bitmap;
-            figure.SetModify(colorDialog.fillColor, autoFill, x, y);
+            figure.SetModify(colorDialog.fillColor, autoFill);
             figure.BuildFigure(x1, y1, x2, y2, shift);
 
             RastrGraph.DrawImage(figure.MyBitmap, 0, 0);

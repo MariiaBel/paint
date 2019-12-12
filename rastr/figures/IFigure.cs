@@ -10,5 +10,7 @@ namespace Paint1
     public interface IFigure
     {
         void Draw(Bitmap bitmap, int startX, int startY, int endX, int endY, bool shift);
+
+        Point GetCenterPoint(int startX, int startY, int endX, int endY);
     }
 }

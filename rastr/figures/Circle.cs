@@ -10,7 +10,6 @@ namespace Paint1
     public class Circle : IFigure
     {
        
-
         private IFigure line = new Line();
         public void Draw(Bitmap bitmap, int startX, int startY, int endX, int endY, bool shift)
         {
@@ -94,6 +93,14 @@ namespace Paint1
                 }
     
       
+        }
+
+        public Point GetCenterPoint(int x1, int y1, int x2, int y2)
+        {
+            int centerX = (x1 + x2) / 2;
+            int centerY = (y1 + y2) / 2;
+
+            return new Point(centerX, centerY);
         }
     }
 }

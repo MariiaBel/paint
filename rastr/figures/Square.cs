@@ -33,5 +33,12 @@ namespace Paint1
                 line.Draw(bitmap, startX, endY, endX, endY, shift);
             }
         }
+        public Point GetCenterPoint(int x1, int y1, int x2, int y2)
+        {
+            int centerX = (x1 + x2) / 2;
+            int centerY = (y1 + y2) / 2;
+
+            return new Point(centerX, centerY);
+        }
     }
 }

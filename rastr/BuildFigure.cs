@@ -13,16 +13,13 @@ namespace Paint1
         private IFill stateFill;
         private bool checkFill;
         private Color FillColor;
-        private int x, y;
         
         public Bitmap MyBitmap { get; set; }
 
-        public void SetModify(Color FillColor, bool autoFill, int x, int y)
+        public void SetModify(Color FillColor, bool autoFill)
         {
             this.FillColor = FillColor;
-            checkFill = autoFill;         
-            this.x = x;
-            this.y = y;
+            checkFill = autoFill;   
         }
 
         public Build(IFigure check, IFill fill)
@@ -33,20 +30,18 @@ namespace Paint1
 
         public void BuildFigure(int startX, int startY, int endX, int endY, bool shift)
         {
+            figure.Draw(MyBitmap, startX, startY, endX, endY, shift);
+
             if (checkFill)
             {
-               
-                figure.Draw(MyBitmap, startX, startY, endX, endY, shift);
-                if ((startX < x && x < endX ) || (endX  < x && x < startX ) )
+                Point centerPoint = figure.GetCenterPoint(startX, startY, endX, endY);
+                if ((startX < centerPoint.X && centerPoint.X < endX ) || (endX  < centerPoint.X && centerPoint.X < startX ) )
                 {
-                    if ((startY < y && y < endY) || (endY < y && y < startY ))
+                    if ((startY < centerPoint.Y && centerPoint.Y < endY) || (endY < centerPoint.Y && centerPoint.Y < startY ))
                     {
-                        Fill(x, y, FillColor);
+                        if(!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
                     }
                 }
-            } else
-            {
-                figure.Draw(MyBitmap, startX, startY, endX, endY, shift);
             }
         }
 
@@ -55,7 +50,7 @@ namespace Paint1
         {
             stateFill = new FillSolid();
             stateFill.MyBitmap = MyBitmap;
-            stateFill.Fill(this.x, this.y, FillColor);   
+            stateFill.Fill(x, y, FillColor);   
         }
     }
 }

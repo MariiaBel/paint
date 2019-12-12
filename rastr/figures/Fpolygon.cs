@@ -35,5 +35,13 @@ namespace Paint1
                 pointY1 = pointY2;
             }
         }
+
+        public Point GetCenterPoint(int x1, int y1, int x2, int y2)
+        {
+            int centerX = (x1 + x2) / 2;
+            int centerY = (y1 + y2) / 2;
+
+            return new Point(centerX, centerY);
+        }
     }
 }

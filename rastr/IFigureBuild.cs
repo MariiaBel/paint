@@ -10,7 +10,7 @@ namespace Paint1
     public interface IFigureBuild
     {
         void BuildFigure(int startX, int startY, int endX, int endY, bool shift);
-        void SetModify(Color brush, bool autoFill, int x, int y);
+        void SetModify(Color brush, bool autoFill);
         Bitmap MyBitmap { get; set; }
     }
 }

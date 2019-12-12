@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -248,23 +248,25 @@ namespace Paint1
             }
             else
             {
-                model = holst.Interaction(new Point(e.X, e.Y));
+                int size = 7;
+                model = holst.Interaction(e.Location);
                 if (model != null)
                 {
                     for (int i = 0; i < model.GetCountPoint(); i++)
                     {
-                        if (model.GetPoint(i) == e.Location)
+                        if (Math.Abs(model.GetPoint(i).X - e.Location.X) <= size)
                         {
                             Tochka = i;
                         }
                     }
-                }
+                } 
             }
         }
 
         private void canvas_vector_MouseUp(object sender, MouseEventArgs e)
         {
             flag = false;
+            
         }
 
         private void line_Click(object sender, EventArgs e)
@@ -277,7 +279,7 @@ namespace Paint1
         private void canvas_vector_MouseMove(object sender, MouseEventArgs e)
         {
             if (change)
-            {
+            {                
                 if (flag)
                 {
                     switch (changeFigure)
@@ -315,7 +317,7 @@ namespace Paint1
 
             }
         }
-
+        
         private void change_figure_Click(object sender, EventArgs e)
         {
             change = false;

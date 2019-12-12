@@ -66,7 +66,7 @@ namespace Paint1
                     {
                         x3 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) + h * Math.Sin(Math.PI / 3)));
                     }
-                    y3 = Convert.ToInt32(Math.Abs(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) - startY));
+                    y3 = Convert.ToInt32(startY - (w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3)));
                 }
             }
             return new Point(x3, y3);

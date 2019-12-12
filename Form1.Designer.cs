@@ -524,6 +524,7 @@
             this.square.Size = new System.Drawing.Size(23, 21);
             this.square.TabIndex = 3;
             this.square.UseVisualStyleBackColor = false;
+            this.square.Click += new System.EventHandler(this.square_Click);
             // 
             // button6
             // 

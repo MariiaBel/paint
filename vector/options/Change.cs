@@ -21,9 +21,9 @@ namespace Paint1
                 {
                     tmp = new Point(q.X + i, q.Y + j);
 
-                    foreach (VectorLine f in figures)
+                    foreach (IFigure_vector f in figures)
                     {
-                        if (f.points.Contains(tmp))
+                        if (f.GetFigure().Contains(tmp))
                         {
                             return f;
                         }

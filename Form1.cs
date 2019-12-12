@@ -30,7 +30,7 @@ namespace Paint1
         bool flag = false, change = true;
         string changeFigure;
         int Tochka;
-        Color LineColor;
+        Color LineColor = Color.Black;
         public Form1()
         {
             InitializeComponent();
@@ -241,6 +241,9 @@ namespace Paint1
                     case "triangle":
                         model = new Triangle_vector();
                         break;
+                    case "square":
+                        model = new Square_vector(); 
+                        break;
                 }
                 model.Initial(new Point(e.X, e.Y), LineColor, trackBar1.Value);
                 holst.Add(model);
@@ -366,6 +369,12 @@ namespace Paint1
         private void triangle_Click(object sender, EventArgs e)
         {
             changeFigure = "triangle";
+            change = true;
+        }
+
+        private void square_Click(object sender, EventArgs e)
+        {
+            changeFigure = "square";
             change = true;
         }
 

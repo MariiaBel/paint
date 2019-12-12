@@ -238,6 +238,9 @@ namespace Paint1
                     case "line":
                         model = new VectorLine();
                         break;
+                    case "triangle":
+                        model = new Triangle_vector();
+                        break;
                 }
                 model.Initial(new Point(e.X, e.Y), LineColor, trackBar1.Value);
                 holst.Add(model);
@@ -358,6 +361,12 @@ namespace Paint1
                 button7.BackColor = colorDialog.Color;
                 LineColor = colorDialog.Color;
             }
+        }
+
+        private void triangle_Click(object sender, EventArgs e)
+        {
+            changeFigure = "triangle";
+            change = true;
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

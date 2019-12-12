@@ -35,11 +35,20 @@ namespace Paint1
             if (checkFill)
             {
                 Point centerPoint = figure.GetCenterPoint(startX, startY, endX, endY);
-                if ((startX < centerPoint.X && centerPoint.X < endX ) || (endX  < centerPoint.X && centerPoint.X < startX ) )
+
+                if (figure is Triangle)
                 {
-                    if ((startY < centerPoint.Y && centerPoint.Y < endY) || (endY < centerPoint.Y && centerPoint.Y < startY ))
+                    int lengthLine = Convert.ToInt32(Math.Sqrt(Math.Pow(endX - startX, 2) + Math.Pow(endY - startY, 2)));
+                    if (lengthLine > Brush.BrushThickness * 3)
                     {
-                        if(!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
+                        if (!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
+                    }
+                } 
+                else if ((startX < centerPoint.X && centerPoint.X < endX) || (endX < centerPoint.X && centerPoint.X < startX))
+                {
+                    if ((startY < centerPoint.Y && centerPoint.Y < endY) || (endY < centerPoint.Y && centerPoint.Y < startY))
+                    {
+                        if (!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
                     }
                 }
             }

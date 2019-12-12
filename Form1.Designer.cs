@@ -49,6 +49,9 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VectorTools = new System.Windows.Forms.ToolStripMenuItem();
             this.RastrTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Save = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.rastr = new System.Windows.Forms.Panel();
             this.vector = new System.Windows.Forms.Panel();
             this.canvas_vector = new System.Windows.Forms.PictureBox();
@@ -65,9 +68,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button8 = new System.Windows.Forms.Button();
             this.line = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.load = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel.SuspendLayout();
@@ -101,7 +101,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(333, 42);
+            this.numericUpDown1.Location = new System.Drawing.Point(335, 42);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             3,
@@ -125,7 +125,7 @@
             this.checkFill.FlatAppearance.BorderSize = 0;
             this.checkFill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkFill.Location = new System.Drawing.Point(335, 15);
+            this.checkFill.Location = new System.Drawing.Point(335, 10);
             this.checkFill.Name = "checkFill";
             this.checkFill.Size = new System.Drawing.Size(91, 24);
             this.checkFill.TabIndex = 8;
@@ -142,7 +142,7 @@
             this.panel2.Controls.Add(this.figureCircle);
             this.panel2.Controls.Add(this.figureSquare);
             this.panel2.Controls.Add(this.pointPolygon);
-            this.panel2.Location = new System.Drawing.Point(208, 13);
+            this.panel2.Location = new System.Drawing.Point(208, 14);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(121, 54);
             this.panel2.TabIndex = 7;
@@ -230,8 +230,10 @@
             this.panel1.Controls.Add(this.trackBrush);
             this.panel1.Controls.Add(this.cleanBt);
             this.panel1.Controls.Add(this.brushTool);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(10, 13);
+            this.panel1.Margin = new System.Windows.Forms.Padding(55, 55, 3, 55);
             this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(15, 15, 0, 15);
             this.panel1.Size = new System.Drawing.Size(177, 55);
             this.panel1.TabIndex = 6;
             // 
@@ -306,13 +308,13 @@
             // canvas
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.canvas.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.canvas.ErrorImage = null;
             this.canvas.Location = new System.Drawing.Point(0, 73);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
-     
             this.canvas.DoubleClick += new System.EventHandler(this.canvas_DoubleClick);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
@@ -320,13 +322,14 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.менюToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1443, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(57, 759);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -339,7 +342,7 @@
             this.SaveAs,
             this.load});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(48, 19);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // VectorTools
@@ -355,6 +358,27 @@
             this.RastrTools.Size = new System.Drawing.Size(180, 22);
             this.RastrTools.Text = "Растровая графика";
             this.RastrTools.Click += new System.EventHandler(this.RastrTools_Click_1);
+            // 
+            // Save
+            // 
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(180, 22);
+            this.Save.Text = "Сохранить";
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // SaveAs
+            // 
+            this.SaveAs.Name = "SaveAs";
+            this.SaveAs.Size = new System.Drawing.Size(180, 22);
+            this.SaveAs.Text = "Сохранить как";
+            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
+            // 
+            // load
+            // 
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(180, 22);
+            this.load.Text = "Загрузить";
+            this.load.Click += new System.EventHandler(this.load_Click);
             // 
             // rastr
             // 
@@ -377,6 +401,7 @@
             // canvas_vector
             // 
             this.canvas_vector.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.canvas_vector.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.canvas_vector.ErrorImage = null;
             this.canvas_vector.Location = new System.Drawing.Point(0, 73);
             this.canvas_vector.Name = "canvas_vector";
@@ -418,7 +443,7 @@
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(208, 13);
+            this.panel4.Location = new System.Drawing.Point(209, 13);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(121, 54);
             this.panel4.TabIndex = 7;
@@ -464,6 +489,7 @@
             this.button4.Size = new System.Drawing.Size(17, 17);
             this.button4.TabIndex = 6;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -500,7 +526,7 @@
             this.panel5.Controls.Add(this.trackBar1);
             this.panel5.Controls.Add(this.button8);
             this.panel5.Controls.Add(this.line);
-            this.panel5.Location = new System.Drawing.Point(12, 12);
+            this.panel5.Location = new System.Drawing.Point(14, 11);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(177, 55);
             this.panel5.TabIndex = 6;
@@ -554,27 +580,6 @@
             this.line.TabIndex = 4;
             this.line.UseVisualStyleBackColor = false;
             this.line.Click += new System.EventHandler(this.line_Click);
-            // 
-            // Save
-            // 
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(180, 22);
-            this.Save.Text = "Сохранить";
-            this.Save.Click += new System.EventHandler(this.Save_Click);
-            // 
-            // SaveAs
-            // 
-            this.SaveAs.Name = "SaveAs";
-            this.SaveAs.Size = new System.Drawing.Size(180, 22);
-            this.SaveAs.Text = "Сохранить как";
-            this.SaveAs.Click += new System.EventHandler(this.SaveAs_Click);
-            // 
-            // load
-            // 
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(180, 22);
-            this.load.Text = "Загрузить";
-            this.load.Click += new System.EventHandler(this.load_Click);
             // 
             // openFileDialog1
             // 

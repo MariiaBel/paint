@@ -81,8 +81,17 @@ namespace Paint1
                 }
                 else
                 {
-                    p3.X = Convert.ToInt32(end.X + w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3));
-                    p3.Y = Convert.ToInt32(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) + end.Y);
+                    p3.X = Convert.ToInt32(start.X + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
+                    if (h == 0)
+                    {
+                        p3.X = Convert.ToInt32(end.X + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
+                    }
+                    if (w != 0 && Math.Atan(h / w) <= Math.PI / 6)
+                    {
+                        p3.X = Convert.ToInt32(end.X + Math.Abs(w * Math.Cos(Math.PI / 3) + h * Math.Sin(Math.PI / 3)));
+                    }
+                    p3.Y = Convert.ToInt32(start.Y - (w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3)));
+                    
                 }
             }
 

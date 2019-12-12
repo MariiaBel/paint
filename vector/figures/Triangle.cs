@@ -9,7 +9,11 @@ namespace Paint1
 {
     class Triangle_vector : IFigure_vector
     {
-        public List<Point> points;
+        public List<Point> points
+        {
+            get;
+            set;
+        }
         public Pen pen;
         Point p3;
 

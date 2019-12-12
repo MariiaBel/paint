@@ -79,7 +79,6 @@
     <Compile Include="vector\figures\Triangle.cs" />
     <Compile Include="vector\Holst.cs" />
     <Compile Include="vector\options\Change.cs" />
-    <Compile Include="vector\options\Drag.cs" />
     <Compile Include="vector\options\IBuild.cs" />
     <Compile Include="vector\Painter.cs" />
     <Compile Include="vector\figures\VectorLine.cs" />

@@ -35,7 +35,7 @@ namespace Paint1
         {
             InitializeComponent();
             vector.Visible = false;
-            vector.Location = new Point(12, 17);
+            vector.Location = new Point(12, 27);
             this.Height = 720;
             this.Width = 784;
             RastrTools.Visible = false;
@@ -222,10 +222,15 @@ namespace Paint1
 
         private void RastrTools_Click_1(object sender, EventArgs e)
         {
+            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+            VectorGraph = Graphics.FromImage(bitmapVector);
+            holst = new Holst();
+            canvas_vector.Image = bitmapVector;
             vector.Visible = false;
             rastr.Visible = true;
             VectorTools.Visible = true;
             RastrTools.Visible = false;
+
         }
 
         private void canvas_vector_MouseDown(object sender, MouseEventArgs e)
@@ -241,19 +246,23 @@ namespace Paint1
                     case "triangle":
                         model = new Triangle_vector();
                         break;
+                    case "circle":
+                        model = new Circle_vector();
+                        break;
                 }
-                model.Initial(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
+                model.Initial(e.Location, Color.Black, trackBar1.Value);
                 holst.Add(model);
 
             }
             else
             {
-                model = holst.Interaction(new Point(e.X, e.Y));
+                int size = 7;
+                model = holst.Interaction(e.Location);
                 if (model != null)
                 {
                     for (int i = 0; i < model.GetCountPoint(); i++)
                     {
-                        if (model.GetPoint(i) == e.Location)
+                        if (Math.Abs(model.GetPoint(i).X - e.Location.X) <= size)
                         {
                             Tochka = i;
                         }
@@ -270,8 +279,8 @@ namespace Paint1
         private void line_Click(object sender, EventArgs e)
         {
             changeFigure = "line";
-           
             change = true;
+            ButtonChange(line);
         }
 
         private void canvas_vector_MouseMove(object sender, MouseEventArgs e)
@@ -280,21 +289,13 @@ namespace Paint1
             {
                 if (flag)
                 {
-                    switch (changeFigure)
+                    if (model != null)
                     {
-                        case "line":
-                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
-                          
-                            canvas_vector.Image = holst.Update(bitmapVector);
-                            break;
-                        case "triangle":
-                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
-
-                            canvas_vector.Image = holst.Update(bitmapVector);
-                            break;
+                        bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                        model.ImageMauseMoveTillCreation(e.Location);
+                        canvas_vector.Image = holst.Update(bitmapVector);
                     }
+                    
                 }
 
             }
@@ -304,12 +305,30 @@ namespace Paint1
                 {
                     if (model != null)
                     {
-                        model.ChangePoint(e.Location, Tochka);
-                        bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                        pointToChange = e.Location;
-                        Painter.DrawFigure(model, bitmapVector);
-                        holst.Add(model);
-                        canvas_vector.Image = holst.Update(bitmapVector);
+                        switch (changeFigure)
+                        {
+                            case "drag":
+                                int deltaX = e.X - model.GetPoint(Tochka).X;
+                                int deltaY = e.Y - model.GetPoint(Tochka).Y;
+                                for (int i = 0; i < model.GetCountPoint(); i++)
+                                {
+                                    int x = model.GetPoint(i).X + deltaX;
+                                    int y = model.GetPoint(i).Y + deltaY;
+                                    model.ChangePoint(new Point(x, y), i);
+                                    bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                                    holst.Add(model);
+                                    canvas_vector.Image = holst.Update(bitmapVector);
+                                }
+                                break;
+
+                            case "change":
+                                model.ChangePoint(e.Location, Tochka);
+                                bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                                holst.Add(model);
+                                canvas_vector.Image = holst.Update(bitmapVector);
+                                break;
+                        }
+                       
                     }
                 }
 
@@ -318,8 +337,10 @@ namespace Paint1
 
         private void change_figure_Click(object sender, EventArgs e)
         {
+            changeFigure = "change";
             change = false;
             holst.build = new Change();
+            ButtonChange(change_figure);
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -356,15 +377,36 @@ namespace Paint1
             }
         }
 
-        private void Load_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void triangleVectorBtn_Click(object sender, EventArgs e)
         {
             changeFigure = "triangle";
             change = true;
+            ButtonChange(triangleVectorBtn);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changeFigure = "circle";
+            change = true;
+            ButtonChange(button4);
+        }
+
+        private void Drag_Click(object sender, EventArgs e)
+        {
+            changeFigure = "drag";
+            change = false;
+            holst.build = new Change();
+            ButtonChange(Drag);
+        }
+
+        private void clBtn_vec_Click(object sender, EventArgs e)
+        {
+            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+            VectorGraph = Graphics.FromImage(bitmapVector);
+            holst = new Holst();
+            canvas_vector.Image = bitmapVector;
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)
@@ -373,6 +415,10 @@ namespace Paint1
             rastr.Visible = false;
             RastrTools.Visible = true;
             VectorTools.Visible = false;
+            bitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            memoryBitmap = bitmapImage;
+
+            canvas.Image = bitmapImage;
         }
 
         private void checkFill_CheckedChanged(object sender, EventArgs e)
@@ -424,13 +470,11 @@ namespace Paint1
 
         private void cleanBt_Click(object sender, EventArgs e)
         {
-            Color lastColorBrush = Brush.BrushColor;
-            int lastThicknessBrush = Brush.BrushThickness;
+
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             memoryBitmap = bitmapImage;
+            
             canvas.Image = bitmapImage;
-            Brush.BrushColor = lastColorBrush;
-            Brush.BrushThickness = lastThicknessBrush;
         }    
 
         private void ButtonChange(Button master)

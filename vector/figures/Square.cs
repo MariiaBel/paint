@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Paint1
 {
-    class Square_vector
+    class Square_vector 
     {
     }
 }

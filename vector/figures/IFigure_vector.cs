@@ -9,6 +9,11 @@ namespace Paint1
 {
     public interface IFigure_vector
     {
+        List<Point> points
+        {
+            get;
+            set;
+        }
         void Initial(Point point, Color color, float truck);
         List<Point> GetFigure();
         void ImageMauseMoveTillCreation(Point p);

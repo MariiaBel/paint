@@ -9,7 +9,10 @@ namespace Paint1
 {
     public class VectorLine : IFigure_vector
     {
-        public List<Point> points;
+        public List<Point> points {
+            get;
+            set;
+        }
         public Pen pen;
 
         public void Initial(Point p, Color color, float size)

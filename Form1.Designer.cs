@@ -58,18 +58,17 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.change_figure = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.triangleVectorBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.square = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.button8 = new System.Windows.Forms.Button();
+            this.clBtn_vec = new System.Windows.Forms.Button();
             this.line = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Drag = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -307,7 +306,7 @@
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.canvas.ErrorImage = null;
-            this.canvas.Location = new System.Drawing.Point(0, 73);
+            this.canvas.Location = new System.Drawing.Point(0, 79);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(784, 647);
             this.canvas.TabIndex = 0;
@@ -409,6 +408,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.Drag);
             this.panel3.Controls.Add(this.change_figure);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.panel5);
@@ -421,41 +421,29 @@
             // 
             // change_figure
             // 
-            this.change_figure.Location = new System.Drawing.Point(336, 29);
+            this.change_figure.BackColor = System.Drawing.Color.White;
+            this.change_figure.FlatAppearance.BorderSize = 0;
+            this.change_figure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.change_figure.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.change_figure.Location = new System.Drawing.Point(292, 15);
             this.change_figure.Name = "change_figure";
-            this.change_figure.Size = new System.Drawing.Size(84, 37);
+            this.change_figure.Size = new System.Drawing.Size(100, 38);
             this.change_figure.TabIndex = 8;
-            this.change_figure.Text = "change";
-            this.change_figure.UseVisualStyleBackColor = true;
+            this.change_figure.Text = "Change";
+            this.change_figure.UseVisualStyleBackColor = false;
             this.change_figure.Click += new System.EventHandler(this.change_figure_Click);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.triangleVectorBtn);
             this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.button6);
+            this.panel4.Controls.Add(this.square);
             this.panel4.Location = new System.Drawing.Point(208, 13);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(121, 54);
+            this.panel4.Size = new System.Drawing.Size(78, 54);
             this.panel4.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(95, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(17, 17);
-            this.button1.TabIndex = 8;
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // triangleVectorBtn
             // 
@@ -465,9 +453,9 @@
             this.triangleVectorBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.triangleVectorBtn.FlatAppearance.BorderSize = 0;
             this.triangleVectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.triangleVectorBtn.Location = new System.Drawing.Point(72, 3);
+            this.triangleVectorBtn.Location = new System.Drawing.Point(27, 3);
             this.triangleVectorBtn.Name = "triangleVectorBtn";
-            this.triangleVectorBtn.Size = new System.Drawing.Size(17, 17);
+            this.triangleVectorBtn.Size = new System.Drawing.Size(16, 17);
             this.triangleVectorBtn.TabIndex = 7;
             this.triangleVectorBtn.UseVisualStyleBackColor = false;
             this.triangleVectorBtn.Click += new System.EventHandler(this.triangleVectorBtn_Click);
@@ -485,33 +473,20 @@
             this.button4.Size = new System.Drawing.Size(17, 17);
             this.button4.TabIndex = 6;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // square
             // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(17, 17);
-            this.button5.TabIndex = 3;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(26, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(17, 17);
-            this.button6.TabIndex = 5;
-            this.button6.UseVisualStyleBackColor = false;
+            this.square.BackColor = System.Drawing.Color.White;
+            this.square.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("square.BackgroundImage")));
+            this.square.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.square.FlatAppearance.BorderSize = 0;
+            this.square.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.square.Location = new System.Drawing.Point(3, 3);
+            this.square.Name = "square";
+            this.square.Size = new System.Drawing.Size(17, 17);
+            this.square.TabIndex = 3;
+            this.square.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
@@ -519,7 +494,7 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.button7);
             this.panel5.Controls.Add(this.trackBar1);
-            this.panel5.Controls.Add(this.button8);
+            this.panel5.Controls.Add(this.clBtn_vec);
             this.panel5.Controls.Add(this.line);
             this.panel5.Location = new System.Drawing.Point(12, 12);
             this.panel5.Name = "panel5";
@@ -548,18 +523,19 @@
             this.trackBar1.Size = new System.Drawing.Size(126, 37);
             this.trackBar1.TabIndex = 2;
             // 
-            // button8
+            // clBtn_vec
             // 
-            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(3, 26);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(17, 17);
-            this.button8.TabIndex = 1;
-            this.button8.UseVisualStyleBackColor = true;
+            this.clBtn_vec.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("clBtn_vec.BackgroundImage")));
+            this.clBtn_vec.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.clBtn_vec.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clBtn_vec.FlatAppearance.BorderSize = 0;
+            this.clBtn_vec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clBtn_vec.Location = new System.Drawing.Point(3, 26);
+            this.clBtn_vec.Name = "clBtn_vec";
+            this.clBtn_vec.Size = new System.Drawing.Size(17, 17);
+            this.clBtn_vec.TabIndex = 1;
+            this.clBtn_vec.UseVisualStyleBackColor = true;
+            this.clBtn_vec.Click += new System.EventHandler(this.clBtn_vec_Click);
             // 
             // line
             // 
@@ -579,6 +555,20 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // Drag
+            // 
+            this.Drag.BackColor = System.Drawing.Color.White;
+            this.Drag.FlatAppearance.BorderSize = 0;
+            this.Drag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Drag.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Drag.Location = new System.Drawing.Point(388, 15);
+            this.Drag.Name = "Drag";
+            this.Drag.Size = new System.Drawing.Size(100, 38);
+            this.Drag.TabIndex = 9;
+            this.Drag.Text = "Drag";
+            this.Drag.UseVisualStyleBackColor = false;
+            this.Drag.Click += new System.EventHandler(this.Drag_Click);
             // 
             // Form1
             // 
@@ -642,15 +632,13 @@
         private System.Windows.Forms.Panel panel3;
        
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button triangleVectorBtn;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button square;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button7;
         public System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button clBtn_vec;
         private System.Windows.Forms.Button line;
         public System.Windows.Forms.PictureBox canvas_vector;
         private System.Windows.Forms.ToolStripMenuItem RastrTools;
@@ -661,6 +649,7 @@
         private System.Windows.Forms.ToolStripMenuItem load;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button Drag;
     }
 }
 

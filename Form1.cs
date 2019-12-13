@@ -30,6 +30,7 @@ namespace Paint1
         bool flag = false, change = true;
         string changeFigure;
         int Tochka;
+        Color LineColor = Color.Black;
 
         public Form1()
         {
@@ -249,8 +250,11 @@ namespace Paint1
                     case "circle":
                         model = new Circle_vector();
                         break;
+                    case "square":
+                        model = new Square_vector();
+                        break;
                 }
-                model.Initial(e.Location, Color.Black, trackBar1.Value);
+                model.Initial(e.Location, LineColor, trackBar1.Value);
                 holst.Add(model);
 
             }
@@ -322,6 +326,10 @@ namespace Paint1
                                 break;
 
                             case "change":
+                                if (model.GetCountPoint() == 4)
+                                {
+
+                                }
                                 model.ChangePoint(e.Location, Tochka);
                                 bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                                 holst.Add(model);
@@ -407,6 +415,24 @@ namespace Paint1
             VectorGraph = Graphics.FromImage(bitmapVector);
             holst = new Holst();
             canvas_vector.Image = bitmapVector;
+        }
+
+        private void square_Click(object sender, EventArgs e)
+        {
+            changeFigure = "square";
+            change = true;
+            ButtonChange(square);
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = colorDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                button7.BackColor = colorDialog.Color;
+                LineColor = colorDialog.Color;
+            }
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

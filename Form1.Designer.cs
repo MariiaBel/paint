@@ -56,6 +56,7 @@
             this.vector = new System.Windows.Forms.Panel();
             this.canvas_vector = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Drag = new System.Windows.Forms.Button();
             this.change_figure = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.triangleVectorBtn = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@
             this.line = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Drag = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -419,6 +419,20 @@
             this.panel3.Size = new System.Drawing.Size(773, 73);
             this.panel3.TabIndex = 3;
             // 
+            // Drag
+            // 
+            this.Drag.BackColor = System.Drawing.Color.White;
+            this.Drag.FlatAppearance.BorderSize = 0;
+            this.Drag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Drag.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Drag.Location = new System.Drawing.Point(388, 15);
+            this.Drag.Name = "Drag";
+            this.Drag.Size = new System.Drawing.Size(100, 38);
+            this.Drag.TabIndex = 9;
+            this.Drag.Text = "Drag";
+            this.Drag.UseVisualStyleBackColor = false;
+            this.Drag.Click += new System.EventHandler(this.Drag_Click);
+            // 
             // change_figure
             // 
             this.change_figure.BackColor = System.Drawing.Color.White;
@@ -487,6 +501,7 @@
             this.square.Size = new System.Drawing.Size(17, 17);
             this.square.TabIndex = 3;
             this.square.UseVisualStyleBackColor = false;
+            this.square.Click += new System.EventHandler(this.square_Click);
             // 
             // panel5
             // 
@@ -513,6 +528,7 @@
             this.button7.Size = new System.Drawing.Size(17, 17);
             this.button7.TabIndex = 1;
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // trackBar1
             // 
@@ -555,20 +571,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // Drag
-            // 
-            this.Drag.BackColor = System.Drawing.Color.White;
-            this.Drag.FlatAppearance.BorderSize = 0;
-            this.Drag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Drag.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Drag.Location = new System.Drawing.Point(388, 15);
-            this.Drag.Name = "Drag";
-            this.Drag.Size = new System.Drawing.Size(100, 38);
-            this.Drag.TabIndex = 9;
-            this.Drag.Text = "Drag";
-            this.Drag.UseVisualStyleBackColor = false;
-            this.Drag.Click += new System.EventHandler(this.Drag_Click);
             // 
             // Form1
             // 

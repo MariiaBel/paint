@@ -328,13 +328,28 @@ namespace Paint1
                             case "change":
                                 if (model.GetCountPoint() == 4)
                                 {
-
+                                 model.ChangePoint(e.Location, Tochka);
+                                bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                                holst.Add(model);
+                                canvas_vector.Image = holst.Update(bitmapVector);
                                 }
-                                model.ChangePoint(e.Location, Tochka);
+                                
+                               
+                           
+                                if (model.GetCountPoint() > 4)
+                                {
+                                    model.ImageMauseMoveTillCreation(e.Location);
+                                                                        
+                                }
                                 bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
                                 holst.Add(model);
                                 canvas_vector.Image = holst.Update(bitmapVector);
                                 break;
+
+
+
+                                
+
                         }
                        
                     }

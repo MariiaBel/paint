@@ -31,7 +31,7 @@ namespace Paint1
             Point p = new Point();
             int radius = Convert.ToInt32(Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2)));
 
-            for (int x = -radius; x <= radius; x++)
+            for (int x = -radius; x+3 <= radius; x=x+3)
             {
                 int yOTx = Convert.ToInt32(Math.Sqrt(Math.Abs(Math.Pow(radius, 2) - Math.Pow(x, 2))));
                 p.X = x+ start.X;
@@ -39,7 +39,7 @@ namespace Paint1
                 points.Add(p);
                 
             }
-            for (int x = radius; x >= -radius; x--) 
+            for (int x = radius; x >= -radius; x=x-3) 
             {
                 int yOTx = Convert.ToInt32(Math.Sqrt(Math.Abs(Math.Pow(radius, 2) - Math.Pow(x, 2))));
                 p.X = x+start.X;

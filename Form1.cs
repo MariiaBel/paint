@@ -24,17 +24,19 @@ namespace Paint1
         Pen p;
         Bitmap bitmapVector;
         Holst holst;
-        VectorLine model;
+        IFigure_vector model;
+        IBuild build;
         Point pointToChange;
         bool flag = false, change = true;
         string changeFigure;
         int Tochka;
+        Color LineColor = Color.Black;
 
         public Form1()
         {
             InitializeComponent();
             vector.Visible = false;
-            vector.Location = new Point(12, 17);
+            vector.Location = new Point(12, 27);
             this.Height = 720;
             this.Width = 784;
             RastrTools.Visible = false;
@@ -47,7 +49,6 @@ namespace Paint1
             bitmapVector = new Bitmap(canvas.Width, canvas.Height);
             VectorGraph = Graphics.FromImage(bitmapVector);
             holst = new Holst();
-
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -86,9 +87,9 @@ namespace Paint1
 
         private void DrawBrush(MouseEventArgs e)
         {
-            Brush.BitmapImage = bitmapImage;
             figure = new Build(contur, typeFill);
-            figure.SetBit(bitmapImage);
+            
+            figure.MyBitmap = bitmapImage;
             figure.BuildFigure(firstPointX, firstPointY, e.Location.X, e.Location.Y, shift);
             firstPointX = e.Location.X;
             firstPointY = e.Location.Y;
@@ -105,21 +106,18 @@ namespace Paint1
 
         //Добавлен булевый атрибут для метода DrawFigureSquare
         private void DrawFigure(int x1, int y1, int x2, int y2) 
-        {
-            
-            int x = (x1 + x2) / 2;
-            int y = (y1 + y2) / 2;
+        {        
             CloneBitmap(out memoryBitmap);
             
             RastrGraph = Graphics.FromImage(memoryBitmap);
             Bitmap bitmap = new Bitmap(canvas.Width, canvas.Height);
             figure = new Build(contur, typeFill);
-            figure.SetModify(colorDialog.fillColor, autoFill, bitmap, x, y);
+            figure.MyBitmap = bitmap;
+            figure.SetModify(colorDialog.fillColor, autoFill);
             figure.BuildFigure(x1, y1, x2, y2, shift);
 
-            RastrGraph.DrawImage(figure.ReturnBit(), 0, 0);
-            canvas.Image = memoryBitmap; 
-            
+            RastrGraph.DrawImage(figure.MyBitmap, 0, 0);
+            canvas.Image = memoryBitmap;  
         }
 
         private void CloneBitmap(out Bitmap btm)
@@ -127,7 +125,6 @@ namespace Paint1
           
             Rectangle r = new Rectangle(0, 0, bitmapImage.Width-1, bitmapImage.Height-1 );
             btm =  bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            Brush.BitmapImage = btm;
             
         }
 
@@ -153,9 +150,10 @@ namespace Paint1
 
         private void FillCanvas(MouseEventArgs e)
         {
-            IFill typeFill = new FillSolid(bitmapImage);
+            IFill typeFill = new FillSolid();
+            typeFill.MyBitmap = bitmapImage;
             typeFill.Fill(e.X, e.Y, Brush.BrushColor);
-            canvas.Image = typeFill.ReturnBit();
+            canvas.Image = typeFill.MyBitmap;
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
@@ -165,7 +163,6 @@ namespace Paint1
             {
                 bitmapImage = memoryBitmap;
             }
-            Brush.BitmapImage = bitmapImage;
             Brush.BrushColor = colorDialog.Color;
         }
 
@@ -176,7 +173,6 @@ namespace Paint1
             {
                 colorBt.BackColor = colorDialog.Color;
                 Brush.BrushColor = colorDialog.Color;
-                Color FillColor = colorDialog.Color;
             }
         }
 
@@ -184,9 +180,8 @@ namespace Paint1
         {
             if (flagFigure == "ppolygon")
             {
-                figure.BuildFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY, shift);
-                bitmapImage = memoryBitmap;
-                canvas.Image = bitmapImage;
+                DrawFigure(prevPointX, prevPointY, memoryFirstPointX, memoryFirstPointY);
+
                 prevPointX = -1;
                 prevPointY = -1;
             }
@@ -210,27 +205,7 @@ namespace Paint1
             Brush.BrushThickness = trackBrush.Value + 1;
         }
 
-        private void trackBrush_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_SizeChanged(object sender, EventArgs e )
-        {
-           
-        }
-        private void figureSquare_BackColorChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void canvas_SizeChanged(object sender, EventArgs e)
-        {
-            //Bitmap btm = new Bitmap(canvas.Width, canvas.Height);
-            //Rectangle r = new Rectangle(0, 0, btm.Width - 1, btm.Height - 1);
-            //btm = bitmapImage.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            //bitmapImage = btm;
-            //canvas.Image = bitmapImage;
-        }
+      
         private void figurePolygon_Click(object sender, EventArgs e)
         {
             
@@ -248,10 +223,15 @@ namespace Paint1
 
         private void RastrTools_Click_1(object sender, EventArgs e)
         {
+            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+            VectorGraph = Graphics.FromImage(bitmapVector);
+            holst = new Holst();
+            canvas_vector.Image = bitmapVector;
             vector.Visible = false;
             rastr.Visible = true;
             VectorTools.Visible = true;
             RastrTools.Visible = false;
+
         }
 
         private void canvas_vector_MouseDown(object sender, MouseEventArgs e)
@@ -259,25 +239,39 @@ namespace Paint1
             flag = true;
             if (change)
             {
-                model = new VectorLine(new Point(e.X, e.Y), Color.Black, trackBrush.Value);
-                holst.figures.Add(model);
+                switch (changeFigure)
+                {
+                    case "line":
+                        model = new VectorLine();
+                        break;
+                    case "triangle":
+                        model = new Triangle_vector();
+                        break;
+                    case "circle":
+                        model = new Circle_vector();
+                        break;
+                    case "square":
+                        model = new Square_vector();
+                        break;
+                }
+                model.Initial(e.Location, LineColor, trackBar1.Value);
+                holst.Add(model);
 
             }
             else
             {
-                model = holst.FindPoint(new Point(e.X, e.Y));
+                int size = 7;
+                model = holst.Interaction(e.Location);
                 if (model != null)
                 {
-                    for (int i = 0; i < model.points.Count; i++)
+                    for (int i = 0; i < model.GetCountPoint(); i++)
                     {
-                        if (model.points[i] == e.Location)
+                        if (Math.Abs(model.GetPoint(i).X - e.Location.X) <= size)
                         {
                             Tochka = i;
                         }
                     }
                 }
-
-
             }
         }
 
@@ -290,6 +284,7 @@ namespace Paint1
         {
             changeFigure = "line";
             change = true;
+            ButtonChange(line);
         }
 
         private void canvas_vector_MouseMove(object sender, MouseEventArgs e)
@@ -298,16 +293,13 @@ namespace Paint1
             {
                 if (flag)
                 {
-                    switch (changeFigure)
+                    if (model != null)
                     {
-                        case "line":
-                            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                            model.ImageMauseMoveTillCreation(new Point(e.X, e.Y));
-                            Painter.DrawFigure(model, bitmapVector);
-                            holst.figures.Add(model);
-                            canvas_vector.Image = holst.Update(bitmapVector);
-                            break;
+                        bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                        model.ImageMauseMoveTillCreation(e.Location);
+                        canvas_vector.Image = holst.Update(bitmapVector);
                     }
+                    
                 }
 
             }
@@ -317,12 +309,49 @@ namespace Paint1
                 {
                     if (model != null)
                     {
-                        model.points[Tochka] = e.Location;
-                        bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
-                        pointToChange = e.Location;
-                        Painter.DrawFigure(model, bitmapVector);
-                        holst.figures.Add(model);
-                        canvas_vector.Image = holst.Update(bitmapVector);
+                        switch (changeFigure)
+                        {
+                            case "drag":
+                                int deltaX = e.X - model.GetPoint(Tochka).X;
+                                int deltaY = e.Y - model.GetPoint(Tochka).Y;
+                                for (int i = 0; i < model.GetCountPoint(); i++)
+                                {
+                                    int x = model.GetPoint(i).X + deltaX;
+                                    int y = model.GetPoint(i).Y + deltaY;
+                                    model.ChangePoint(new Point(x, y), i);
+                                    bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                                    holst.Add(model);
+                                    canvas_vector.Image = holst.Update(bitmapVector);
+                                }
+                                break;
+
+                            case "change":
+                                if (model.GetCountPoint() == 4)
+                                {
+                                    model.ImageMauseMoveTillCreation(e.Location);
+                                }
+                                else if (model.GetCountPoint() > 4)
+                                {
+                                    model.ImageMauseMoveTillCreation(e.Location);
+                                } else 
+                                {
+                                    model.ChangePoint(e.Location, Tochka);
+                                }
+                                
+                               
+                           
+                                
+                                bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+                                holst.Add(model);
+                                canvas_vector.Image = holst.Update(bitmapVector);
+                                break;
+
+
+
+                                
+
+                        }
+                       
                     }
                 }
 
@@ -331,12 +360,94 @@ namespace Paint1
 
         private void change_figure_Click(object sender, EventArgs e)
         {
+            changeFigure = "change";
             change = false;
+            holst.build = new Change();
+            ButtonChange(change_figure);
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             FigureAngles.SetAngles(Convert.ToInt32(numericUpDown1.Value));
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            string FileName = @"C:\Users\User\Desktop\Test.jpg";
+            bitmapImage.Save(FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+
+        private void SaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                bitmapImage.Save(saveFileDialog1.OpenFile(), System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
+        private void load_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                openFileDialog1.Reset();
+                bitmapImage = new Bitmap(openFileDialog1.OpenFile());
+                canvas.Image = bitmapImage;
+            }
+        }
+
+        
+
+        private void triangleVectorBtn_Click(object sender, EventArgs e)
+        {
+            changeFigure = "triangle";
+            change = true;
+            ButtonChange(triangleVectorBtn);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changeFigure = "circle";
+            change = true;
+            ButtonChange(button4);
+        }
+
+        private void Drag_Click(object sender, EventArgs e)
+        {
+            changeFigure = "drag";
+            change = false;
+            holst.build = new Change();
+            ButtonChange(Drag);
+        }
+
+        private void clBtn_vec_Click(object sender, EventArgs e)
+        {
+            bitmapVector = new Bitmap(canvas_vector.Width, canvas_vector.Height);
+            VectorGraph = Graphics.FromImage(bitmapVector);
+            holst = new Holst();
+            canvas_vector.Image = bitmapVector;
+        }
+
+        private void square_Click(object sender, EventArgs e)
+        {
+            changeFigure = "square";
+            change = true;
+            ButtonChange(square);
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = colorDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                button7.BackColor = colorDialog.Color;
+                LineColor = colorDialog.Color;
+            }
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)
@@ -345,6 +456,10 @@ namespace Paint1
             rastr.Visible = false;
             RastrTools.Visible = true;
             VectorTools.Visible = false;
+            bitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            memoryBitmap = bitmapImage;
+
+            canvas.Image = bitmapImage;
         }
 
         private void checkFill_CheckedChanged(object sender, EventArgs e)
@@ -396,14 +511,11 @@ namespace Paint1
 
         private void cleanBt_Click(object sender, EventArgs e)
         {
-            Color lastColorBrush = Brush.BrushColor;
-            int lastThicknessBrush = Brush.BrushThickness;
+
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
             memoryBitmap = bitmapImage;
+            
             canvas.Image = bitmapImage;
-            Brush.BitmapImage = bitmapImage;
-            Brush.BrushColor = lastColorBrush;
-            Brush.BrushThickness = lastThicknessBrush;
         }    
 
         private void ButtonChange(Button master)

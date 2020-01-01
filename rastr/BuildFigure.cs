@@ -13,29 +13,13 @@ namespace Paint1
         private IFill stateFill;
         private bool checkFill;
         private Color FillColor;
-        private Bitmap bitmap;
-        private int x, y;
+        
+        public Bitmap MyBitmap { get; set; }
 
-
-        public Bitmap ReturnBit()
-        {
-            return this.bitmap;
-        }
-
-
-        public void SetBit(Bitmap bit)
-        {
-            this.bitmap = bit;
-        }
-
-
-        public void SetModify(Color FillColor, bool autoFill, Bitmap bitmap, int x, int y)
+        public void SetModify(Color FillColor, bool autoFill)
         {
             this.FillColor = FillColor;
-            checkFill = autoFill;
-            this.bitmap = bitmap;
-            this.x = x;
-            this.y = y;
+            checkFill = autoFill;   
         }
 
         public Build(IFigure check, IFill fill)
@@ -46,36 +30,36 @@ namespace Paint1
 
         public void BuildFigure(int startX, int startY, int endX, int endY, bool shift)
         {
+            figure.Draw(MyBitmap, startX, startY, endX, endY, shift);
+
             if (checkFill)
             {
-               
-                figure.Draw(bitmap, startX, startY, endX, endY, shift);
-                if ((startX < x && x < endX ) || (endX  < x && x < startX ) )
-                {
-                    if ((startY < y && y < endY) || (endY < y && y < startY ))
-                    {
-                        Fill(x, y, FillColor);
-                    }
+                Point centerPoint = figure.GetCenterPoint(startX, startY, endX, endY);
 
+                if (figure is Triangle)
+                {
+                    int lengthLine = Convert.ToInt32(Math.Sqrt(Math.Pow(endX - startX, 2) + Math.Pow(endY - startY, 2)));
+                    if (lengthLine > Brush.BrushThickness * 3)
+                    {
+                        if (!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
+                    }
+                } 
+                else if ((startX < centerPoint.X && centerPoint.X < endX) || (endX < centerPoint.X && centerPoint.X < startX))
+                {
+                    if ((startY < centerPoint.Y && centerPoint.Y < endY) || (endY < centerPoint.Y && centerPoint.Y < startY))
+                    {
+                        if (!centerPoint.IsEmpty) Fill(centerPoint.X, centerPoint.Y, FillColor);
+                    }
                 }
-            } else
-            {
-                figure.Draw(bitmap, startX, startY, endX, endY, shift);
             }
         }
 
 
         public void Fill(int x, int y, Color FillColor) 
         {
-            stateFill = new FillSolid(bitmap);
-            //Rectangle r = new Rectangle(0, 0, bitmap.Width - 1, bitmap.Height - 1);
-            //Bitmap btm = bitmap.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare);
-            //bitmap = btm;
-            stateFill.Fill(this.x, this.y, FillColor);   
+            stateFill = new FillSolid();
+            stateFill.MyBitmap = MyBitmap;
+            stateFill.Fill(x, y, FillColor);   
         }
-      
-
-
-
     }
 }

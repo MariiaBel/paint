@@ -8,18 +8,8 @@ namespace Paint1
     {
         public static Color BrushColor { set; get; } = Color.Black;
         public static int BrushThickness { set; get; } = 1;
-        
-        public static  Bitmap BitmapImage
-        {
-            set;
-            get;
-        }
-       
-        public Brush(ref Bitmap btm)
-        { 
-            BitmapImage = btm;
-        }
 
+      
         public static void DrawLine(Bitmap bitmap, int startX, int startY, int endX, int endY)
         {
             double w = endX - startX,

@@ -9,16 +9,14 @@ namespace Paint1
 {
     public static class Painter
     {
-        public static void DrawFigure(VectorLine line, Bitmap bitmap)
+        public static void DrawFigure(IFigure_vector figure, Bitmap bitmap)
         {
             Graphics gr = Graphics.FromImage(bitmap);
-
-            for (int i = 0; i < line.points.Count - 1; i++)
+            for (int i = 0; i < figure.GetCountPoint() - 1; i++)
             {
-                gr.DrawLine(line.pen, line.points[i], line.points[i + 1]);
+                gr.DrawLine(figure.GetPen(), figure.GetPoint(i), figure.GetPoint(i + 1));
             }
-            gr.DrawLine(line.pen, line.points[0], line.points[line.points.Count - 1]);
+            gr.DrawLine(figure.GetPen(), figure.GetPoint(0), figure.GetPoint(figure.GetCountPoint() - 1));
         }
-
     }
 }

@@ -20,55 +20,66 @@ namespace Paint1
             }
             else
             {
-                int w = Math.Abs(endX - startX);
-                int h = Math.Abs(endY - startY);
-
                 line.Draw(bitmap, startX, startY, endX, endY, shift);
 
-                if (endX > startX)
+                Point point3 = GetPoint3(startX, startY, endX, endY);
+
+                line.Draw(bitmap, endX, endY, point3.X, point3.Y, shift);
+                line.Draw(bitmap, point3.X, point3.Y, startX, startY, shift);
+            }
+        }
+
+        Point GetPoint3(int startX, int startY, int endX, int endY)
+        {
+            int x3, y3;
+            int w = Math.Abs(endX - startX);
+            int h = Math.Abs(endY - startY);
+
+            if (endX > startX)
+            {
+                if (endY > startY)
                 {
-                    if (endY > startY)
-                    {
-                        int x3 = Convert.ToInt32(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3) + startX);
-                        int y3 = Convert.ToInt32(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) + startY);
-                        line.Draw(bitmap, endX, endY, x3, y3, shift);
-                        line.Draw(bitmap, x3, y3, startX, startY, shift);
-                    }
-                    else
-                    {
-                        int x3 = Convert.ToInt32(Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3) - endX));
-                        int y3 = Convert.ToInt32(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) + endY);
-                        line.Draw(bitmap, endX, endY, x3, y3, shift);
-                        line.Draw(bitmap, x3, y3, startX, startY, shift);
-                    }
+                    x3 = Convert.ToInt32(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3) + startX);
+                    y3 = Convert.ToInt32(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) + startY);
                 }
                 else
                 {
-                    if (endY > startY)
-                    {
-                        int x4 = Convert.ToInt32(endX + w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3));
-                        int y4 = Convert.ToInt32(endY - (w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3)));
-                        line.Draw(bitmap, endX, endY, x4, y4, shift);
-                        line.Draw(bitmap, x4, y4, startX, startY, shift);
-
-                    }
-                    else
-                    {
-                        int x4 = Convert.ToInt32(startX + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
-                        if (h == 0)
-                        {
-                            x4 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
-                        }
-                        if (w != 0 && Math.Atan(h / w) <= Math.PI / 6)
-                        {
-                            x4 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) + h * Math.Sin(Math.PI / 3)));
-                        }
-                        int y4 = Convert.ToInt32(Math.Abs(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) - startY));
-                        line.Draw(bitmap, endX, endY, x4, y4, shift);
-                        line.Draw(bitmap, x4, y4, startX, startY, shift);
-                    }
+                    x3 = Convert.ToInt32(Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3) - endX));
+                    y3 = Convert.ToInt32(w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3) + endY);
                 }
             }
+            else
+            {
+                if (endY > startY)
+                {
+                    x3 = Convert.ToInt32(endX + w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3));
+                    y3 = Convert.ToInt32(endY - (w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3)));
+                }
+                else
+                {
+                    x3 = Convert.ToInt32(startX + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
+                    if (h == 0)
+                    {
+                        x3 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) - h * Math.Sin(Math.PI / 3)));
+                    }
+                    if (w != 0 && Math.Atan(h / w) <= Math.PI / 6)
+                    {
+                        x3 = Convert.ToInt32(endX + Math.Abs(w * Math.Cos(Math.PI / 3) + h * Math.Sin(Math.PI / 3)));
+                    }
+                    y3 = Convert.ToInt32(startY - (w * Math.Sin(Math.PI / 3) + h * Math.Cos(Math.PI / 3)));
+                }
+            }
+            return new Point(x3, y3);
+        }
+
+        public Point GetCenterPoint(int x1, int y1, int x2, int y2)
+        {
+            Point point3 = GetPoint3(x1, y1, x2, y2);
+
+            int centerX = (x1 + x2 + point3.X) / 3;
+            int centerY = (y1 + y2 + point3.Y) / 3;
+
+            return new Point(centerX, centerY);
         }
     }
 }

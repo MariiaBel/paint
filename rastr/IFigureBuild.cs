@@ -7,11 +7,10 @@ using System.Drawing;
 
 namespace Paint1
 {
-    public interface IFigureBuild 
+    public interface IFigureBuild
     {
         void BuildFigure(int startX, int startY, int endX, int endY, bool shift);
-        void SetModify(Color brush, bool autoFill, Bitmap bitmap, int x, int y);
-        Bitmap ReturnBit();
-        void SetBit(Bitmap bit);
+        void SetModify(Color brush, bool autoFill);
+        Bitmap MyBitmap { get; set; }
     }
 }

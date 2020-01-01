@@ -7,10 +7,8 @@ using System.Drawing;
 
 namespace Paint1
 {
-    interface IFill 
+    public interface IBuild
     {
-        void Fill(int x, int y, Color FillColor);
-        
-        Bitmap MyBitmap { get; set; }
+        IFigure_vector Options(Point p, List<IFigure_vector> figures);
     }
 }

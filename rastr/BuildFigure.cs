@@ -61,5 +61,6 @@ namespace Paint1
             stateFill.MyBitmap = MyBitmap;
             stateFill.Fill(x, y, FillColor);   
         }
+
     }
 }

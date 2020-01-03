@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel = new System.Windows.Forms.Panel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -69,6 +70,10 @@
             this.line = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.avlBox = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.buildAvlBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -87,6 +92,9 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.label1);
+            this.panel.Controls.Add(this.buildAvlBtn);
+            this.panel.Controls.Add(this.avlBox);
             this.panel.Controls.Add(this.numericUpDown1);
             this.panel.Controls.Add(this.checkFill);
             this.panel.Controls.Add(this.panel2);
@@ -324,7 +332,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1443, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -572,12 +580,43 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // avlBox
+            // 
+            this.avlBox.Location = new System.Drawing.Point(539, 41);
+            this.avlBox.Name = "avlBox";
+            this.avlBox.Size = new System.Drawing.Size(115, 26);
+            this.avlBox.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // buildAvlBtn
+            // 
+            this.buildAvlBtn.Location = new System.Drawing.Point(660, 40);
+            this.buildAvlBtn.Name = "buildAvlBtn";
+            this.buildAvlBtn.Size = new System.Drawing.Size(115, 28);
+            this.buildAvlBtn.TabIndex = 9;
+            this.buildAvlBtn.Text = "Построить";
+            this.buildAvlBtn.UseVisualStyleBackColor = true;
+            this.buildAvlBtn.Click += new System.EventHandler(this.buildAvlBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(535, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(232, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Введите числа через пробел";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1443, 759);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.vector);
             this.Controls.Add(this.rastr);
             this.Controls.Add(this.menuStrip1);
@@ -652,6 +691,10 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Drag;
+        private System.Windows.Forms.Button buildAvlBtn;
+        private System.Windows.Forms.TextBox avlBox;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

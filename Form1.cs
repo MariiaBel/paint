@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Paint1.avlTree;
+using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
@@ -21,16 +23,16 @@ namespace Paint1
 
         //Векторная графика
         Graphics VectorGraph;
-        Pen p;
         Bitmap bitmapVector;
         Holst holst;
         IFigure_vector model;
-        IBuild build;
-        Point pointToChange;
         bool flag = false, change = true;
         string changeFigure;
         int Tochka;
         Color LineColor = Color.Black;
+
+        // Build AvlTree
+        BuildAvl<int> avlTree;
 
         public Form1()
         {
@@ -448,6 +450,17 @@ namespace Paint1
                 button7.BackColor = colorDialog.Color;
                 LineColor = colorDialog.Color;
             }
+        }
+
+        private void buildAvlBtn_Click(object sender, EventArgs e)
+        {
+            if (avlBox.Text == "") return;
+            avlTree = new BuildAvl<int>(avlBox.Text);
+
+            bitmapImage = new Bitmap(canvas.Width, canvas.Height);
+            memoryBitmap = bitmapImage;
+            avlTree.Build(bitmapImage);
+            canvas.Image = bitmapImage;
         }
 
         private void VectorTools_Click_1(object sender, EventArgs e)

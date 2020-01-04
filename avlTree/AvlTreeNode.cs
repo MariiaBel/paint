@@ -106,24 +106,32 @@ namespace Paint1.avlTree
         {
             if (State == TreeState.RightHeavy)
             {
-                if (Right != null && Right.BalanceFactory < 0) LeftRightBalance();
+                if (Right != null && Right.BalanceFactory < 0) RightLeftBalance();
                 else LeftRotation();
             }
             else if (State == TreeState.LeftHeavy)
             {
-                if (Left != null && Left.BalanceFactory > 0) RightLeftBalance();
+                if (Left != null && Left.BalanceFactory > 0) LeftRightBalance();
                 else RightRotation();
             }
         }
 
         private void RightRotation()
         {
-            //throw new NotImplementedException();
+            AVLTreeNode<TNode> newRoot = Left;
+            ReplaceRoot(newRoot);
+            Left = newRoot.Right;
+            newRoot.Right = this;
         }
 
         private void RightLeftBalance()
         {
-            //throw new NotImplementedException();
+            AVLTreeNode<TNode> newRoot = Right.Left;
+            ReplaceRoot(newRoot);
+            newRoot.Right = Right;
+            Right.Left = null;
+            newRoot.Left = this;
+            this.Right = null;
         }
 
         private void LeftRotation()
@@ -136,7 +144,12 @@ namespace Paint1.avlTree
 
         private void LeftRightBalance()
         {
-            //throw new NotImplementedException();
+            AVLTreeNode<TNode> newRoot = Left.Right;
+            ReplaceRoot(newRoot);
+            newRoot.Left = Left;
+            Left.Right = null;
+            newRoot.Right = this;
+            this.Left = null;
         }
 
         private void ReplaceRoot(AVLTreeNode<TNode> newRoot)

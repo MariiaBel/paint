@@ -50,6 +50,7 @@
     <Compile Include="avlTree\AvlTreeNode.cs" />
     <Compile Include="avlTree\BuildAvl.cs" />
     <Compile Include="avlTree\settingsAvlBuilding.cs" />
+    <Compile Include="avlTree\Text.cs" />
     <Compile Include="FigureAngles.cs" />
     <Compile Include="rastr\Brush.cs" />
     <Compile Include="rastr\BuildFigure.cs" />
